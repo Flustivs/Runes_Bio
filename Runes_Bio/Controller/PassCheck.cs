@@ -9,9 +9,10 @@
 			List<string> admin = new List<string>();
 			List<string> employee = new List<string>();
 			admin = db.DBConnection("SELECT COUNT(adminID) FROM Administrator");
-			employee = db.DBConnection("SELECT COUNT(employee) FROM employee");
+			employee = db.DBConnection("SELECT COUNT(employeeID) FROM employee");
 			int numEmployee = int.Parse(employee[0]);
 			int numAdmin = int.Parse(admin[0]);
+			byte savedID = 0;
 			List<string> passList = new List<string>();
 			string item;
 
@@ -32,21 +33,33 @@
 					break;
 			}
 			numAdmin += numEmployee;
-			for (int i = 0; i < numAdmin; i++)
+			if (savedID == 0)
 			{
-				passList = db.DBConnection(dbCmd + $"{i}");
-				if (passList.Count > 0)
+				for (int i = 0; i < numAdmin; i++)
 				{
-					item = passList[0];
+					passList = db.DBConnection(dbCmd + $"{i}");
+					if (passList.Count > 0)
+					{
+						item = passList[0];
 
-					if (item == pass)
-					{
-						return true;
+						if (item == pass)
+						{
+							return true;
+						}
+						else
+						{
+							passList.Clear();
+						}
 					}
-					else
-					{
-						passList.Clear();
-					}
+				}
+			}
+			else
+			{
+				passList = db.DBConnection(dbCmd + $"{savedID}");
+				item = passList[0];
+				if (item == pass)
+				{
+					return true;
 				}
 			}
 			return false;

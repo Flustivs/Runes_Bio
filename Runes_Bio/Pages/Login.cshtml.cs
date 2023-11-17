@@ -16,9 +16,19 @@ namespace Runes_Bio.Pages
 		[ValidateAntiForgeryToken]
 		public IActionResult OnPost()
 		{
-			bool pass = checker.PassChecker(passID, 0);
-			bool email = checker.PassChecker(emailID, 1);
-			if (pass && email)
+			bool adEmail = checker.PassChecker(emailID, 1);
+			bool empEmail = checker.PassChecker(emailID, 3);
+			bool adPass = false;
+			bool empPass = false;
+			if (adEmail)
+			{
+				adPass = checker.PassChecker(passID, 0);
+			}
+			else if (empEmail)
+			{
+				empPass = checker.PassChecker(passID, 2);
+			}
+			if (adPass && adEmail || empEmail && empPass)
 			{
 				return RedirectToPage("/Index");
 			}
