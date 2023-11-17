@@ -1,0 +1,52 @@
+﻿@page
+@model Runes_Bio.Pages.RegisterModel
+@{
+}
+<head>
+	<link rel="stylesheet" href="/css/site.css">
+	<link rel="stylesheet" href="/css/Login.css">
+</head>
+<body>
+	<script src="/_framework/aspnetcore-browser-refresh.js"></script>
+	<div class="nav">
+		<a class="active" href="Index">Home</a>
+		<a href="About">Om Os</a>
+		<a href="Movie">Movies</a>
+		<div class="login">
+			<a href="Login">Login</a>
+		</div>
+	</div>
+	<div class="background"></div>
+	<div class="centerBox">
+		<div class="loginBox" style="height: 300px; width: 350px;">
+			<form method="post" asp-page="/Register">
+				@Html.AntiForgeryToken()
+				<br />
+				<br />
+				<a class="inputText">Fornavn:</a>
+				<input class="inputField" type="text" name="nameID" placeholder="Konrad" required />
+				<br />
+				<br />
+				<a class="inputText">Email:</a>
+				<input class="inputField" type="text" name="emailID" placeholder="Kon143@gmail.com" required />
+				<br />
+				<br />
+				<a class="inputText">Kodeord:</a>
+				<input class="inputField" type="text" name="passID" placeholder="Kon9326rAd#" required />
+				<br />
+				<br />
+				<a class="inputText">Bekræft Kodeord:</a>
+				<input class="inputField" type="text" name="confPassID" placeholder="Kon9326rAd#" required />
+				<br />
+				@if (Model.passID != Model.confPassID)
+				{
+					<br />
+					<meta http-equiv="refresh" content="3">
+					<a class="passBox" style="visibility: visible; align-content: center;">Kodeordene er ikke ens</a>
+				}
+				<br />
+				<button type="submit" class="submitButton">Submit</button>
+			</form>
+		</div>
+	</div>
+</body>

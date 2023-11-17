@@ -1,0 +1,36 @@
+﻿@page
+@model Runes_Bio.Pages.LoginModel
+@{
+}
+<head>
+	<link rel="stylesheet" href="/css/site.css">
+	<link rel="stylesheet" href="/css/Login.css">
+
+</head>
+<body>
+	<script src="/_framework/aspnetcore-browser-refresh.js"></script>
+	<div class="nav">
+		<a class="active" href="Index">Home</a>
+		<a href="About">Om Os</a>
+		<a href="Movie">Movies</a>
+		<div class="login">
+			<a href="Register">Register</a>
+		</div>
+	</div>
+	<div class="background"></div>
+	<div class="centerBox">
+		<div class="loginBox" style="height: 200px;">
+			<form method="post" asp-page="/Login">
+				@Html.AntiForgeryToken()
+				<br />
+				<a class="inputText">Email: <input type="text" name="emailID" placeholder="Tims1234@gmail.com" required /></a>
+				<br />
+				<br />
+				<a class="inputText">Password: <input type="text" name="passID" placeholder="pAss1243!" required /></a>
+				<br />
+				<br />
+				<button type="submit" class="submitButton">Submit</button>
+			</form>
+		</div>
+	</div>
+</body>

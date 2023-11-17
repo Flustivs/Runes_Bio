@@ -1,0 +1,35 @@
+﻿@page
+@model Runes_Bio.Pages.MovieModel
+@{
+}
+<head>
+	<link rel="stylesheet" href="/css/site.css">
+	<link rel="stylesheet" href="/css/Movie.css">
+</head>
+<body>
+	<div class="nav">
+		<a class="active" href="Index">Home</a>
+		<a href="About">Om Os</a>
+		<a href="Movie">Movies</a>
+		<div class="login">
+			<a href="Login">Login</a>
+		</div>
+		<div class="login">
+			<a href="Register">Register</a>
+		</div>
+	</div>
+	<div class="background"></div>
+	<div class="latestMovieBox" style="width: 250px;height: 600px;">
+		<a class="center_Small_Text">Latest Movies</a>
+	</div>
+	<div class="latestMovieBox" style="float: right; width: 1050px;height: 600px">
+		<a class="center_Small_Text">Popular Movies</a>
+		@foreach(string thing in Model.item())
+			{
+				<br />
+				<br />
+				<a>@thing</a>
+			}
+
+	</div>
+</body>
