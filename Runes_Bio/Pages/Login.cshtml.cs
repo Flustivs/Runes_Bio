@@ -33,7 +33,7 @@ namespace Runes_Bio.Pages
 				return RedirectToPage("/Index");
 			}
 
-			return RedirectToPage("/Movie");
+			return RedirectToPage("/Login");
 		}
 
 	}

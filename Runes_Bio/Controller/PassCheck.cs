@@ -3,7 +3,7 @@
 	public class PassCheck
 	{
 		Dbconnection.Connection db = new Dbconnection.Connection();
-
+		private byte savedID = 0;
 		internal bool PassChecker(string pass, byte num)
 		{
 			List<string> admin = new List<string>();
@@ -12,7 +12,6 @@
 			employee = db.DBConnection("SELECT COUNT(employeeID) FROM employee");
 			int numEmployee = int.Parse(employee[0]);
 			int numAdmin = int.Parse(admin[0]);
-			byte savedID = 0;
 			List<string> passList = new List<string>();
 			string item;
 
@@ -23,19 +22,19 @@
 					dbCmd = "SELECT codeWord FROM Administrator WHERE adminID = ";
 					break;
 				case 1:
-					dbCmd = "SELECT email FROM Administrator WHERE adminID = ";
+					dbCmd = "SELECT emailID FROM Administrator WHERE adminID = ";
 					break;
 				case 2:
 					dbCmd = "SELECT codeWord FROM Employee WHERE employeeID = ";
 					break;
 				case 3:
-					dbCmd = "SELECT email FROM Employee WHERE employeeID = ";
+					dbCmd = "SELECT emailID FROM Employee WHERE employeeID = ";
 					break;
 			}
 			numAdmin += numEmployee;
 			if (savedID == 0)
 			{
-				for (int i = 0; i < numAdmin; i++)
+				for (byte i = 0; i < numAdmin; i++)
 				{
 					passList = db.DBConnection(dbCmd + $"{i}");
 					if (passList.Count > 0)
@@ -44,6 +43,7 @@
 
 						if (item == pass)
 						{
+							savedID = i;
 							return true;
 						}
 						else
@@ -55,8 +55,10 @@
 			}
 			else
 			{
+
 				passList = db.DBConnection(dbCmd + $"{savedID}");
 				item = passList[0];
+				savedID = 0;
 				if (item == pass)
 				{
 					return true;

@@ -6,7 +6,7 @@ namespace Runes_Bio.Dbconnection
 {
 	public class Connection
 	{
-		private string DBConn = "Data Source=ZBC-S-RUNE4805;Initial Catalog=Runes_Bio;Integrated Security=True;TrustServerCertificate=True;";
+		private string DBConn = "Data Source=(localdb)\\MSSqlLocalDb;Initial Catalog=Runes_Bio;Integrated Security=True;TrustServerCertificate=True;";
 		List<string> items = new List<string>();
 		public List<string> DBConnection(string command)
 		{

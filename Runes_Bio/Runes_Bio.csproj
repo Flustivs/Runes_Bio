@@ -9,12 +9,15 @@
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/appsscript.json" /></VisualStudio></ProjectExtensions>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+    <Compile Remove="Model\**" />
+    <Content Remove="Model\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <None Remove="Model\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
   </ItemGroup>
 
 </Project>
