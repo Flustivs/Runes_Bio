@@ -1,10 +1,9 @@
 ﻿namespace Runes_Bio.Controller
 {
-	public class PassCheck
+	public class DBCommands
 	{
 		Dbconnection.Connection db = new Dbconnection.Connection();
-
-		internal bool PassChecker(string pass, byte num)
+		internal bool EmailChecker(string input, byte num)
 		{
 			List<string> admin = new List<string>();
 			List<string> employee = new List<string>();
@@ -12,10 +11,8 @@
 			employee = db.DBConnection("SELECT COUNT(employeeID) FROM employee");
 			int numEmployee = int.Parse(employee[0]);
 			int numAdmin = int.Parse(admin[0]);
-			byte savedID = 0;
 			List<string> passList = new List<string>();
 			string item;
-
 			string dbCmd = "SELECT emailID FROM Customer WHERE employeeID = ";
 			switch (num)
 			{
@@ -33,36 +30,44 @@
 					break;
 			}
 			numAdmin += numEmployee;
-			if (savedID == 0)
+			for (int i = 0; i <= numAdmin; i++)
 			{
-				for (int i = 0; i < numAdmin; i++)
+				passList = db.DBConnection(dbCmd + $"{i}");
+				if (passList.Count > 0)
 				{
-					passList = db.DBConnection(dbCmd + $"{i}");
-					if (passList.Count > 0)
-					{
-						item = passList[0];
+					item = passList[0];
 
-						if (item == pass)
-						{
-							return true;
-						}
-						else
-						{
-							passList.Clear();
-						}
+					if (item == input)
+					{
+						return true;
 					}
-				}
-			}
-			else
-			{
-				passList = db.DBConnection(dbCmd + $"{savedID}");
-				item = passList[0];
-				if (item == pass)
-				{
-					return true;
+					else
+					{
+						passList.Clear();
+					}
 				}
 			}
 			return false;
 		}
-	}
+		internal string GetPass(byte num, string email)
+		{
+			List<string> pass = new List<string>();
+			try
+			{
+				if (num == 0)
+				{
+					pass = db.DBConnection($"SELECT codeWord FROM Administrator WHERE email = '{email}'");
+				}
+				if (num == 1)
+				{
+					pass = db.DBConnection($"SELECT codeWord FROM Employee WHERE email = '{email}'");
+				}
+				return pass[0];
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+}
 }

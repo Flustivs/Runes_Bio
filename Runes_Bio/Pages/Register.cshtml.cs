@@ -7,6 +7,7 @@ namespace Runes_Bio.Pages
     public class RegisterModel : PageModel
     {
         CreatePerson create = new CreatePerson();
+        HashController hash = new HashController();
         public void OnGet()
         {
         }
@@ -24,7 +25,8 @@ namespace Runes_Bio.Pages
         {
             if (passID == confPassID)
             {
-                create.Create(nameID, emailID, passID);
+                string hashedPass = hash.Hash(passID);
+                create.Create(nameID, emailID, hashedPass);
                 return RedirectToPage("/Login");
             }
             return Page();

@@ -7,7 +7,8 @@ namespace Runes_Bio.Pages
 {
     public class LoginModel : PageModel
     {
-		PassCheck checker = new PassCheck();
+		DBCommands dbCMD = new DBCommands();
+		HashController hash = new HashController();
         [BindProperty]
         public string emailID { get; set; }
 		[BindProperty]
@@ -16,21 +17,28 @@ namespace Runes_Bio.Pages
 		[ValidateAntiForgeryToken]
 		public IActionResult OnPost()
 		{
-			bool adEmail = checker.PassChecker(emailID, 1);
-			bool empEmail = checker.PassChecker(emailID, 3);
-			bool adPass = false;
-			bool empPass = false;
-			if (adEmail)
+			string pass;
+			string hashedPass;
+			bool verified;
+			bool adminEmail = dbCMD.EmailChecker(emailID, 1);
+			bool empEmail = dbCMD.EmailChecker(emailID, 3);
+			if (adminEmail)
 			{
-				adPass = checker.PassChecker(passID, 0);
+				pass = dbCMD.GetPass(0, emailID);
+				verified = hash.Verify(passID, pass);
+				if (verified)
+				{
+					return RedirectToPage("/EmployeeIndex");
+				}
 			}
-			else if (empEmail)
+			if (empEmail)
 			{
-				empPass = checker.PassChecker(passID, 2);
-			}
-			if (adPass && adEmail || empEmail && empPass)
-			{
-				return RedirectToPage("/Index");
+				pass = dbCMD.GetPass(1, emailID);
+				verified = hash.Verify(passID, pass);
+				if (verified)
+				{
+					return RedirectToPage("/EmployeeIndex");
+				}
 			}
 
 			return RedirectToPage("/Movie");
