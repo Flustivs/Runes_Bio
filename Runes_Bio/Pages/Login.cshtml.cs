@@ -41,7 +41,7 @@ namespace Runes_Bio.Pages
 				}
 			}
 
-			return RedirectToPage("/Movie");
+			return RedirectToPage("/Login");
 		}
 
 	}
