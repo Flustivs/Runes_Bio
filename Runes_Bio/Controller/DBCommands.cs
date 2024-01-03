@@ -3,12 +3,7 @@
 	public class DBCommands
 	{
 		Dbconnection.Connection db = new Dbconnection.Connection();
-<<<<<<< HEAD:Runes_Bio/Controller/DBCommands.cs
 		internal bool EmailChecker(string input, byte num)
-=======
-		private byte savedID = 0;
-		internal bool PassChecker(string pass, byte num)
->>>>>>> a87409cb00af136c6ad99589bf141b59aaf7bcaf:Runes_Bio/Controller/PassCheck.cs
 		{
 			List<string> admin = new List<string>();
 			List<string> employee = new List<string>();
@@ -18,35 +13,30 @@
 			int numAdmin = int.Parse(admin[0]);
 			List<string> passList = new List<string>();
 			string item;
-			string dbCmd = "SELECT emailID FROM Customer WHERE employeeID = ";
+			string dbCmd = "SELECT email FROM Customer WHERE employeeID = ";
 			switch (num)
 			{
 				case 0:
 					dbCmd = "SELECT codeWord FROM Administrator WHERE adminID = ";
 					break;
 				case 1:
-					dbCmd = "SELECT emailID FROM Administrator WHERE adminID = ";
+					dbCmd = "SELECT email FROM Administrator WHERE adminID = ";
 					break;
 				case 2:
 					dbCmd = "SELECT codeWord FROM Employee WHERE employeeID = ";
 					break;
 				case 3:
-					dbCmd = "SELECT emailID FROM Employee WHERE employeeID = ";
+					dbCmd = "SELECT email FROM Employee WHERE employeeID = ";
 					break;
 			}
 			numAdmin += numEmployee;
 			for (int i = 0; i <= numAdmin; i++)
 			{
-<<<<<<< HEAD:Runes_Bio/Controller/DBCommands.cs
 				passList = db.DBConnection(dbCmd + $"{i}");
 				if (passList.Count > 0)
-=======
-				for (byte i = 0; i < numAdmin; i++)
->>>>>>> a87409cb00af136c6ad99589bf141b59aaf7bcaf:Runes_Bio/Controller/PassCheck.cs
 				{
 					item = passList[0];
 
-<<<<<<< HEAD:Runes_Bio/Controller/DBCommands.cs
 					if (item == input)
 					{
 						return true;
@@ -55,29 +45,6 @@
 					{
 						passList.Clear();
 					}
-=======
-						if (item == pass)
-						{
-							savedID = i;
-							return true;
-						}
-						else
-						{
-							passList.Clear();
-						}
-					}
-				}
-			}
-			else
-			{
-
-				passList = db.DBConnection(dbCmd + $"{savedID}");
-				item = passList[0];
-				savedID = 0;
-				if (item == pass)
-				{
-					return true;
->>>>>>> a87409cb00af136c6ad99589bf141b59aaf7bcaf:Runes_Bio/Controller/PassCheck.cs
 				}
 			}
 			return false;

@@ -8,5 +8,10 @@ namespace Runes_Bio.Pages
         public void OnGet()
         {
         }
+        public IActionResult OnPost()
+        {
+            Console.WriteLine("Hello");
+            return RedirectToPage("/EmployeeIndex");
+        }
     }
 }
