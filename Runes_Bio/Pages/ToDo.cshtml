@@ -1,14 +1,17 @@
 ﻿@page
 @model Runes_Bio.Pages.ToDoModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
 }
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="/css/site.css">
+	<link rel="stylesheet" href="/css/site.css" />
+	<link rel="stylesheet" href="/css/ToDo.css" />
+	<script src="~/js/site.js"></script>
 </head>
 <body>
-	<script src="/_framework/aspnetcore-browser-refresh.js"></script>
-	<div style="d-flex flex-column justify-content-center w-100 h-100">
-	</div>
+	<div class="background"></div>
 	<div class="nav">
 		<a class="active" href="EmployeeIndex">Home</a>
 		<a href="About">Om Os</a>
@@ -22,8 +25,44 @@
 		</div>
 	</div>
 	<div class="centerBox">
-		<form method="post">
-			<button type="button" style="opacity: 0.1; height: 200px; width: 200px; pointer-events: all;"></button>
+		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 1)">
+			@Html.AntiForgeryToken()
+			<label for="submit1">
+				<img id="img1" src="~/Pictures/Green_Trash.png" class="Trash" style="left: 36%;" />
+			</label>
+			<input type="submit" id="submit1" name="submit1" value="submit1" class="Input" />
 		</form>
+		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 2)">
+			@Html.AntiForgeryToken()
+			<label for="submit2">
+				<img id="img2" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 10%; left: 28%;" />
+			</label>
+			<input type="submit" id="submit2" name="submit2" value="submit2" class="Input" />
+		</form>
+		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 3)">
+			@Html.AntiForgeryToken()
+			<label for="submit3">
+				<img id="img3" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 50%;left: 66%;" />
+			</label>
+			<input type="submit" id="submit3" name="submit3" value="submit3" class="Input" />
+		</form>
+		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 4)">
+			@Html.AntiForgeryToken()
+			<label for="submit4">
+				<img id="img4" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 1%; left: 1%;" />
+			</label>
+			<input type="submit" id="submit4" name="submit4" value="submit4" class="Input" />
+		</form>
+		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 5)">
+			@Html.AntiForgeryToken()
+			<label for="submit5">
+				<img id="img5" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 1%; left: 78%;" />
+			</label>
+			<input type="submit" id="submit5" name="submit5" value="submit5" class="Input" />
+		</form>
+		@{
+			
+		}
 	</div>
 </body>
+</html>

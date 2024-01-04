@@ -43,7 +43,7 @@ body {
     left: 0;
     overflow: hidden;
     z-index: -50;
-    background-image: linear-gradient(rgba(255,255,255,0), rgba(0,0,0,1)),url("/Pictures/movies-theatre.gif");
+    background-image: url("/Pictures/Cinema.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
