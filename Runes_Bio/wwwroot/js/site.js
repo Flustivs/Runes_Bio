@@ -1,14 +1,39 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
-
 // Write your JavaScript code.
+
+let buttonPressCount;
+
+function reset() {
+    localStorage.setItem("img1", false)
+    localStorage.setItem("img2", false)
+    localStorage.setItem("img3", false)
+    localStorage.setItem("img4", false)
+    localStorage.setItem("img5", false)
+    buttonPressCount = 0;
+}
 
 function hideImage(event, image) {
     event.preventDefault();
     var img = document.getElementById("img" + image);
     img.style.visibility = 'hidden';
     localStorage.setItem("img" + image, true);
+    buttonPressCount++
+    VisibleImage();
 };
+
+
+function VisibleImage() {
+    if (buttonPressCount === 5) {
+        let images = document.getElementsByClassName('Trash');
+        setTimeout(function () {
+            for (var i = 0; i < images.length; i++) {
+                images[i].style.visibility = 'visible';
+            }
+            reset()
+        }, 2000);
+    }
+}
 
 window.onload = function () {
     for (let i = 1; i < 6; i++) {

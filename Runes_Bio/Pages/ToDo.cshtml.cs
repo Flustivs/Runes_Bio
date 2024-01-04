@@ -5,16 +5,12 @@ namespace Runes_Bio.Pages
 {
     public class ToDoModel : PageModel
     {
-		private bool submit1;
-		private bool submit2;
-		private bool submit3;
-		private bool submit4;
-		private bool submit5;
 		public void OnGet()
         {
-        }
+		}
 		public void OnPost()
 		{
+
 			if (!string.IsNullOrEmpty(HttpContext.Request.Form["submit1"]))
 			{
 				HttpContext.Session.SetString("submit1", "true");
@@ -51,26 +47,8 @@ namespace Runes_Bio.Pages
 				HttpContext.Session.SetString("submit3", "false");
 				HttpContext.Session.SetString("submit4", "false");
 				HttpContext.Session.SetString("submit5", "false");
-			}
+                Console.WriteLine("hello");
+            }
 		}
-
-		//public byte CheckTrash(string trashBag)
-		//{
-		//	switch (trashBag)
-		//	{
-		//		case "submit1":
-		//			return 1;
-		//		case "submit2":
-		//			return 2;
-		//		case "submit3":
-		//			return 3;
-		//		case "submit4":
-		//			return 4;
-		//		case "submit5":
-		//			return 5;
-		//	}
-		//	return 0;
-		//}
-
 	}
 }
