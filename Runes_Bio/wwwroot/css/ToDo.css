@@ -1,28 +1,24 @@
-﻿.Trash{
-    position: absolute;
-    transform: scale(0.1);
-    top: 50%;
-    left: 50%;
-}
-.Input{
-    position: absolute;
-    display: none;
-    opacity: 0;
-}
-.PopUp{
-    width: 350px;
-    height: 300px;
-    position: absolute;
+﻿.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
     color: white;
-    transition: 1s ease-in-out;
-    transform: translate(-50%, -50%) scale(0.1);
-    visibility: hidden;
-    top: 10%;
-    left: 50%;
-    padding: 2px, 32px, 62px;
-    z-index: 1;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    position: fixed;
+    left: 75%;
+    transition: opacity 1s ease-in-out;
 }
-.PopUpOpen{
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-}
+
+    .button:hover {
+        background-color: #45a049;
+        color: white;
+    }
+    .button.fade-out {
+        opacity: 0;
+    }

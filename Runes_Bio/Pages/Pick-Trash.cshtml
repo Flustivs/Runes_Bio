@@ -1,0 +1,71 @@
+﻿@page
+@model Runes_Bio.Pages.ToDoModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="/css/site.css" />
+	<link rel="stylesheet" href="/css/Pick-Trash.css" />
+	<script src="~/js/site.js"></script>
+</head>
+<body>
+	<script>reset()</script>
+	<div class="background"></div>
+	<div class="nav">
+		<a class="active" href="EmployeeIndex">Home</a>
+		<a href="About">Om Os</a>
+		<a href="Movie">Movies</a>
+		<a href="ToDo">To Do List</a>
+		<div class="login">
+			<a href="Login">Login</a>
+		</div>
+		<div class="login">
+			<a href="Register">Register</a>
+		</div>
+	</div>
+	<div class="centerBox">
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 1, 1)">
+			@Html.AntiForgeryToken()
+			<label for="submit1">
+				<img id="img1" src="~/Pictures/Green_Trash.png" class="Trash" style="left: 36%;" />
+				<div class="PopUp" id="PopUpBox1"></div>
+			</label>
+			<input type="submit" id="submit1" class="Input" />
+		</form>
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 2, 2)">
+			@Html.AntiForgeryToken()
+			<label for="submit2">
+				<img id="img2" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 10%; left: 28%;" />
+				<div class="PopUp" id="PopUpBox2"></div>
+			</label>
+			<input type="submit" id="submit2" class="Input" />
+		</form>
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 3, 3)">
+			@Html.AntiForgeryToken()
+			<label for="submit3">
+				<img id="img3" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 50%;left: 66%;" />
+				<div class="PopUp" id="PopUpBox3"></div>
+			</label>
+			<input type="submit" id="submit3" class="Input" />
+		</form>
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 4, 4)">
+			@Html.AntiForgeryToken()
+			<label for="submit4">
+				<img id="img4" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 1%; left: 1%;" />
+				<div class="PopUp" id="PopUpBox4"></div>
+			</label>
+			<input type="submit" id="submit4" class="Input" />
+		</form>
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 5, 5)">
+			@Html.AntiForgeryToken()
+			<label for="submit5">
+				<img id="img5" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 1%; left: 78%;" />
+				<div class="PopUp" id="PopUpBox5"></div>
+			</label>
+			<input type="submit" id="submit5" class="Input" />
+		</form>
+	</div>
+</body>
+</html>

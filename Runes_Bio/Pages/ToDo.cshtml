@@ -9,10 +9,9 @@
 	<link rel="stylesheet" href="/css/site.css" />
 	<link rel="stylesheet" href="/css/ToDo.css" />
 	<script src="~/js/site.js"></script>
+	<script src="~/js/ToDo.js"></script>
 </head>
 <body>
-	<script>reset()</script>
-	<div class="background"></div>
 	<div class="nav">
 		<a class="active" href="EmployeeIndex">Home</a>
 		<a href="About">Om Os</a>
@@ -26,46 +25,7 @@
 		</div>
 	</div>
 	<div class="centerBox">
-		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 1)">
-			@Html.AntiForgeryToken()
-			<label for="submit1">
-				<img id="img1" src="~/Pictures/Green_Trash.png" class="Trash" style="left: 36%;" />
-				<div class="PopUp" id="PopUpBox1"></div>
-			</label>
-			<input type="submit" id="submit1" name="submit1" value="submit1" class="Input" />
-		</form>
-		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 2)">
-			@Html.AntiForgeryToken()
-			<label for="submit2">
-				<img id="img2" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 10%; left: 28%;" />
-				<div class="PopUp" id="PopUpBox2"></div>
-			</label>
-			<input type="submit" id="submit2" name="submit2" value="submit2" class="Input" />
-		</form>
-		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 3)">
-			@Html.AntiForgeryToken()
-			<label for="submit3">
-				<img id="img3" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 50%;left: 66%;" />
-				<div class="PopUp" id="PopUpBox3"></div>
-			</label>
-			<input type="submit" id="submit3" name="submit3" value="submit3" class="Input" />
-		</form>
-		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 4)">
-			@Html.AntiForgeryToken()
-			<label for="submit4">
-				<img id="img4" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 1%; left: 1%;" />
-				<div class="PopUp" id="PopUpBox4"></div>
-			</label>
-			<input type="submit" id="submit4" name="submit4" value="submit4" class="Input" />
-		</form>
-		<form method="post" action="/ToDo" onsubmit="return hideImage(event, 5)">
-			@Html.AntiForgeryToken()
-			<label for="submit5">
-				<img id="img5" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 1%; left: 78%;" />
-				<div class="PopUp" id="PopUpBox5"></div>
-			</label>
-			<input type="submit" id="submit5" name="submit5" value="submit5" class="Input" />
-		</form>
+		<button class="button" onclick="PickUpTrash()">Pick Up Trash</button>
 	</div>
 </body>
 </html>

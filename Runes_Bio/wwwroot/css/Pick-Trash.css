@@ -1,0 +1,32 @@
+﻿.Trash {
+    position: absolute;
+    transform: scale(0.1);
+    top: 50%;
+    left: 50%;
+}
+
+.Input {
+    position: absolute;
+    display: none;
+    opacity: 0;
+}
+
+.PopUp {
+    width: 350px;
+    height: 300px;
+    border: 5px;
+    border-color: white;
+    position: absolute;
+    color: white;
+    transition: 1s ease-in-out;
+    transform: translate(-50%, -50%) scale(0.1);
+    visibility: hidden;
+    top: 10%;
+    left: 50%;
+    padding: 2px, 32px, 62px;
+}
+
+.PopUpOpen {
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}

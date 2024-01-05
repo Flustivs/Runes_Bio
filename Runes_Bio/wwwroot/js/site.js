@@ -23,8 +23,8 @@ function hideImage(event, image, popUpID) {
 };
 
 function PopUp(popUpID) {
-    let popup = document.getElementById(popUpID);
-    popup.classList.add("PopUpOpen");
+    let popup = document.getElementById("PopUpBox" + popUpID);
+    popup.style.visibility = "visible";
 
 }
 
