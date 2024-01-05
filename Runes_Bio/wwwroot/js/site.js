@@ -13,24 +13,31 @@ function reset() {
     buttonPressCount = 0;
 }
 
-function hideImage(event, image) {
+function hideImage(event, image, popUpID) {
     event.preventDefault();
     var img = document.getElementById("img" + image);
-    img.style.visibility = 'hidden';
+    img.style.visibility = "hidden";
     localStorage.setItem("img" + image, true);
     buttonPressCount++
-    VisibleImage();
+    VisibleImage(popUpID);
 };
 
+function PopUp(popUpID) {
+    let popup = document.getElementById(popUpID);
+    popup.classList.add("PopUpOpen");
 
-function VisibleImage() {
+}
+
+function VisibleImage(popUpID) {
     if (buttonPressCount === 5) {
-        let images = document.getElementsByClassName('Trash');
+        let images = document.getElementsByClassName("Trash");
+        PopUp(popUpID);
         setTimeout(function () {
             for (var i = 0; i < images.length; i++) {
-                images[i].style.visibility = 'visible';
+                images[i].style.visibility = "visible";
             }
-            reset()
+            //window.location.href = "/EmployeeIndex";
+            reset();
         }, 2000);
     }
 }
@@ -44,8 +51,7 @@ window.onload = function () {
     }
 }
 
-// Attach event listeners
-var elements = document.getElementsByClassName('site');
+var elements = document.getElementsByClassName("site");
 for (let i = 0; i < elements.length; i++) {
-    elements[i].addEventListener('click', function (e) { hideImage(e, i + 1); });
+    elements[i].addEventListener("click", function (e) { hideImage(e, i + 1); });
 }
