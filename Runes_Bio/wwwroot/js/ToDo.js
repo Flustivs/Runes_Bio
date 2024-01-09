@@ -5,16 +5,17 @@
         window.location.href = "/Pick-Trash";
     }, 1000);
 }
-function Calculate() {
-    var button = document.getElementById("ButtonCalculate");
+function CalculateFood() {
+    var button = document.getElementById("ButtonCalFood");
     button.classList.add("fade-out");
     setTimeout(function () {
-        let num = Math.random(0, 2);
-        if (num === 0) {
-            window.location.href = "/CalculateTickets";
-        }
-        else {
-            window.location.href = "/CalculateFood";
-        }
+        window.location.href = "/CalculateFood";
+    }, 1000);
+}
+function CalculateTicket() {
+    var button = document.getElementById("ButtonCalTicket");
+    button.classList.add("fade-out");
+    setTimeout(function () {
+        window.location.href = "/CalculateTickets";
     }, 1000);
 }

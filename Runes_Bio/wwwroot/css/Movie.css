@@ -11,10 +11,4 @@
     box-sizing: border-box;
     outline: 3px solid black;
     display: block;
-    transition: width 1s ease-in, height 1s ease-in;
 }
-.latestMovieBox:hover{
-    width: 1050px;
-    height: 760px;
-}
-

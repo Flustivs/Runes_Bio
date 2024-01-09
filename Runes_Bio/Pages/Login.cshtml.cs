@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Runes_Bio.Controller;
+using Newtonsoft.Json;
 using Runes_Bio.Dbconnection;
 
 namespace Runes_Bio.Pages
@@ -14,35 +16,29 @@ namespace Runes_Bio.Pages
 		[BindProperty]
 		public string passID { get; set; }
 
-		[ValidateAntiForgeryToken]
+		[HttpPost]
 		public IActionResult OnPost()
 		{
 			string pass;
-			string hashedPass;
 			bool verified;
 			bool adminEmail = dbCMD.EmailChecker(emailID, 1);
 			bool empEmail = dbCMD.EmailChecker(emailID, 3);
-			if (adminEmail)
+			if (adminEmail || empEmail)
 			{
-				pass = dbCMD.GetPass(0, emailID);
+				int roleId = adminEmail ? 0 : 1;
+				pass = dbCMD.GetPass((byte)roleId, emailID);
 				verified = hash.Verify(passID, pass);
 				if (verified)
 				{
-					return RedirectToPage("/EmployeeIndex");
-				}
-			}
-			if (empEmail)
-			{
-				pass = dbCMD.GetPass(1, emailID);
-				verified = hash.Verify(passID, pass);
-				if (verified)
-				{
+					var result = new { Success = true, Message = "Logged in successfully!" };
 					return RedirectToPage("/EmployeeIndex");
 				}
 			}
 
+			var errorResult = new { Success = false, Message = "Invalid login credentials." };
 			return RedirectToPage("/Login");
 		}
+
 
 	}
 }

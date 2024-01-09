@@ -5,21 +5,25 @@
 <head>
 	<link rel="stylesheet" href="/css/site.css">
 	<link rel="stylesheet" href="/css/Login.css">
-
+	<script src="/js/LoggedIn.js"></script>
 </head>
 <body>
 	<script src="/_framework/aspnetcore-browser-refresh.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		loggedin()
+		</script>
 	<div class="nav">
 		<a class="active" href="Index">Home</a>
 		<a href="About">Om Os</a>
 		<a href="Movie">Movies</a>
 		<div class="login">
-			<a href="Register">Register</a>
+			<a id="register" href="Register">Register</a>
 		</div>
 	</div>
 	<div class="centerBox">
 		<div class="loginBox" style="height: 200px;">
-			<form method="post" asp-page="/Login">
+			<form id="loginForm" method="post" asp-page="/Login">
 				@Html.AntiForgeryToken()
 				<br />
 				<a class="inputText">Email: <input type="text" name="emailID" placeholder="Tims1234@gmail.com" required /></a>
