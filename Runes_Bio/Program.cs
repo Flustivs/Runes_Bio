@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
+using Runes_Bio.Pages;
 
 namespace Runes_Bio
 {
@@ -14,6 +15,8 @@ namespace Runes_Bio
 			// Add services to the container.
 			builder.Services.AddRazorPages();
 			builder.Services.AddControllers();
+			builder.Services.AddTransient<ICalculateTicketsModel, CalculateTicketsModel>();
+			builder.Services.AddScoped<Dbconnection.Connection, Dbconnection.Connection>();
 
 			// Add services to the container.
 			builder.Services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache

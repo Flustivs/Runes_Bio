@@ -26,46 +26,45 @@
 		</div>
 	</div>
 	<div class="centerBox">
-		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 1, 1)">
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 1)">
 			@Html.AntiForgeryToken()
 			<label for="submit1">
 				<img id="img1" src="~/Pictures/Green_Trash.png" class="Trash" style="left: 36%;" />
-				<div class="PopUp" id="PopUpBox1"></div>
 			</label>
 			<input type="submit" id="submit1" class="Input" />
 		</form>
-		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 2, 2)">
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 2)">
 			@Html.AntiForgeryToken()
 			<label for="submit2">
 				<img id="img2" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 10%; left: 28%;" />
-				<div class="PopUp" id="PopUpBox2"></div>
 			</label>
 			<input type="submit" id="submit2" class="Input" />
 		</form>
-		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 3, 3)">
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 3)">
 			@Html.AntiForgeryToken()
 			<label for="submit3">
 				<img id="img3" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 50%;left: 66%;" />
-				<div class="PopUp" id="PopUpBox3"></div>
 			</label>
 			<input type="submit" id="submit3" class="Input" />
 		</form>
-		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 4, 4)">
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 4)">
 			@Html.AntiForgeryToken()
 			<label for="submit4">
 				<img id="img4" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 1%; left: 1%;" />
-				<div class="PopUp" id="PopUpBox4"></div>
 			</label>
 			<input type="submit" id="submit4" class="Input" />
 		</form>
-		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 5, 5)">
+		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 5)">
 			@Html.AntiForgeryToken()
 			<label for="submit5">
 				<img id="img5" src="~/Pictures/Green_Trash.png" class="Trash" style="top: 1%; left: 78%;" />
-				<div class="PopUp" id="PopUpBox5"></div>
 			</label>
 			<input type="submit" id="submit5" class="Input" />
 		</form>
+		<div class="PopUp">
+			<header style="font-size: 30px; text-align: center;">Congratulations</header>
+			<p style="font-size: 25px; text-align:center">You have picked up all the trash</p>
+		</div>
 	</div>
 </body>
 </html>

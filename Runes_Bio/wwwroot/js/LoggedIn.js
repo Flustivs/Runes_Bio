@@ -16,26 +16,31 @@
 }
 
 window.onload = function () {
-    $('loginForm').on('submit', function (e) {
-        e.preventDefault();
-        $.ajax({
-            url: '@URL.Page("/Login")',
-            type: 'POST',
-            data: $(this).serialize(),
-            success: function (response) {
-                if (response.success) {
-                    localStorage.setItem('loggedin', 'true');
-                    console.log("Succes true");
-                } else {
-                    localStorage.setItem('loggedin', 'false');
-                    console.log("success false");
-                }
-            },
-            error: function (jqxhr, textStatus, errorThrown) {
-                console.error('Error' + textStatus);
-            }
-        });
-    });
+    var loggedin = localStorage.getItem('loggedin');
+    if (loggedin === 'true') {
+        document.getElementById('register').style.visibility = 'hidden';
+        document.getElementById('login').style.visibility = 'hidden';
+    }
+//    $('loginForm').on('submit', function (e) {
+//        e.preventDefault();
+//        $.ajax({
+//            url: '@URL.Page("/Login")',
+//            type: 'POST',
+//            data: $(this).serialize(),
+//            success: function (response) {
+//                if (response.success) {
+//                    localStorage.setItem('loggedin', 'true');
+//                    console.log("Succes true");
+//                } else {
+//                    localStorage.setItem('loggedin', 'false');
+//                    console.log("success false");
+//                }
+//            },
+//            error: function (jqxhr, textStatus, errorThrown) {
+//                console.error('Error' + textStatus);
+//            }
+//        });
+//    });
 }
 //$(document).ready(function () {
 //    $('#loginForm').on('submit', function (e) {

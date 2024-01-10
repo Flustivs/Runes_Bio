@@ -13,45 +13,50 @@ function reset() {
     buttonPressCount = 0;
 }
 
-function hideImage(event, image, popUpID) {
+function hideImage(event, image) {
     event.preventDefault();
-    var img = document.getElementById("img" + image);
-    img.style.visibility = "hidden";
-    localStorage.setItem("img" + image, true);
+    var img = document.getElementById('img' + image);
+    img.style.visibility = 'hidden';
+    localStorage.setItem('img' + image, true);
     buttonPressCount++
-    VisibleImage(popUpID);
+    VisibleImage();
 };
 
-function PopUp(popUpID) {
-    let popup = document.getElementById("PopUpBox" + popUpID);
-    popup.style.visibility = "visible";
-
+function PopUp() {
+    let popup = document.getElementsByClassName('PopUp');
+    if (popup.length > 0) {
+        popup[0].style.opacity = '1';
+        popup[0].style.visibility = 'visible';
+    }
+    setTimeout(function () {
+        window.location.href = '/ToDo';
+    }, 4000)
 }
 
-function VisibleImage(popUpID) {
+function VisibleImage() {
     if (buttonPressCount === 5) {
-        let images = document.getElementsByClassName("Trash");
-        PopUp(popUpID);
+        let images = document.getElementsByClassName('Trash');
+        PopUp();
         setTimeout(function () {
             for (var i = 0; i < images.length; i++) {
-                images[i].style.visibility = "visible";
+                images[i].style.visibility = 'visible';
             }
             //window.location.href = "/EmployeeIndex";
             reset();
-        }, 2000);
+        }, 4100);
     }
 }
 
 window.onload = function () {
     for (let i = 1; i < 6; i++) {
-        var imgHidden = localStorage.getItem("img" + i)
+        var imgHidden = localStorage.getItem('img' + i)
         if (imgHidden == true) {
-            document.getElementById("img" + i).style.visibility = "hidden";
+            document.getElementById('img' + i).style.visibility = 'hidden';
         }
     }
 }
 
-var elements = document.getElementsByClassName("site");
+var elements = document.getElementsByClassName('site');
 for (let i = 0; i < elements.length; i++) {
-    elements[i].addEventListener("click", function (e) { hideImage(e, i + 1); });
+    elements[i].addEventListener('click', function (e) { hideImage(e, i + 1); });
 }
