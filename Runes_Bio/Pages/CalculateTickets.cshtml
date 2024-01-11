@@ -7,7 +7,9 @@
 <head>
 	<link rel="stylesheet" href="/css/site.css" />
 	<link rel="stylesheet" href="/css/Calculate.css" />
+	<link rel="stylesheet" href="/css/ToDo.css" />
 	<script src="~/js/site.js"></script>
+	<script src="~/js/Calculate.js"></script>
 </head>
 <body>
 	<div class="nav">
@@ -20,6 +22,8 @@
 		<header style="font-size: 35px; text-align: center;position: fixed; top: 10%; color: lightcyan;">
 			These are your Math problems
 		</header>
+		<div class="popBox" id="CongratsBox">Well Done</div>
+		<div class="popBox" id="FailedBox">Wa Wa, you got some wrong</div>
 		<div class="textBox">
 			<a>
 				<br />
@@ -42,7 +46,6 @@
 					{
 						<p>@item</p>
 					}
-
 				}
 				<input type="number" id="question1" />
 			</a>
@@ -73,6 +76,9 @@
 				}
 				<input type="number" id="question4" />
 			</a>
+			<button class="button" style="left: 46%; top: 40%;" type="submit" id="SubmitCal" onclick="CheckValue(@Model.GetAnswer(1), @Model.GetAnswer(2), @Model.GetAnswer(3), @Model.GetAnswer(4))">
+			Færdig
+		</button>
 		</div>
 	</div>
 </body>

@@ -1,0 +1,23 @@
+﻿@page
+@model Runes_Bio.Pages.PopCornModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="/css/site.css" />
+	<link rel="stylesheet" href="/css/PopCornGame.css" />
+	<script src="~/js/site.js"></script>
+	<script src="~/js/PopCornGame.js"></script>
+</head>
+<body>
+	<div class="nav">
+		<a class="active" href="EmployeeIndex">Home</a>
+		<a href="About">Om Os</a>
+		<a href="Movie">Movies</a>
+		<a href="ToDo">To Do List</a>
+	</div>
+	<img class="PopCornImg" style="visibility: hidden" src="/Pictures/PopCornBox.png" id="PopCornBox" />
+	<button class="button" style="top: 50%; left: 50%;" id="StartGame" onclick="StartGame()">Start PopCorn game</button>
+</body>
+</html>

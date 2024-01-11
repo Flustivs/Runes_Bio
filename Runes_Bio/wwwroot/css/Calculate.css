@@ -1,6 +1,4 @@
-﻿body {
-}
-.PopUp {
+﻿.PopUp {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -21,4 +19,21 @@
     width: 420px;
     height: 120px;
     color: black;
+}
+.popBox {
+    height: 70px;
+    width: 200px;
+    position: fixed;
+    top: 60%;
+    border-block: 2px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+    visibility: hidden;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    align-items: center;
 }

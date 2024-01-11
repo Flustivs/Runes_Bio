@@ -20,8 +20,8 @@ namespace Runes_Bio.Pages
         public string GetQuestion(byte num)
         {
             List<string> questions = new List<string>();
-            string questionCMD = "SELECT question FROM Questions";
-            questions = _conn.DBConnection(questionCMD);
+            string dbCMD = "SELECT question FROM Questions";
+            questions = _conn.DBConnection(dbCMD);
             switch (num)
             {
                 case 1:
@@ -36,6 +36,24 @@ namespace Runes_Bio.Pages
                     return questions[4];
             }
             return "Something went wrong";
+        }
+        public string GetAnswer(byte num)
+        {
+            List<string> answer = new List<string>();
+            string dbCmd = "SELECT answers FROM Questions";
+            answer = _conn.DBConnection(dbCmd);
+            switch (num)
+            {
+                case 1:
+                    return answer[1];
+				case 2:
+					return answer[2];
+				case 3:
+					return answer[3];
+				case 4:
+					return answer[4];
+			}
+            return "";
         }
     }
 }
