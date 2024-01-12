@@ -7,6 +7,7 @@
 <head>
 	<link rel="stylesheet" href="/css/site.css" />
 	<link rel="stylesheet" href="/css/PopCornGame.css" />
+	<link rel="stylesheet" href="/css/ToDo.css" />
 	<script src="~/js/site.js"></script>
 	<script src="~/js/PopCornGame.js"></script>
 </head>
@@ -17,7 +18,24 @@
 		<a href="Movie">Movies</a>
 		<a href="ToDo">To Do List</a>
 	</div>
+	<div class="InputValue" style="top: 25%; width: 230px; height: 100px;">
+		<a>Hvis der er en popcorn der falder på jorden taber du.</a>
+		<a>Dit Mål vil være 20 popcorn</a>
+	</div>
+	<div class="InputValue">
+		<a>Skriv antal Popcorn der skal falde i sekundet</a>
+		<input type="number" id="PopCornPS" />
+	</div>
+	<div class="ResultBox" id="won">
+		<a style="align-content: center;">Du Vandt</a>
+	</div>
+	<div class="ResultBox" id="lost">
+		<a style="align-content: center;">Du tabte</a>
+	</div>
 	<img class="PopCornImg" style="visibility: hidden" src="/Pictures/PopCornBox.png" id="PopCornBox" />
-	<button class="button" style="top: 50%; left: 50%;" id="StartGame" onclick="StartGame()">Start PopCorn game</button>
+	<button style="position: fixed; top: 46%; left: 46%" id="StartGame" onclick="StartGame()">Start PopCorn game</button>
+	<div class="PopCornCounter">
+		<p id="Counter" style="font-size: 40px;">0</p>
+	</div>
 </body>
 </html>
