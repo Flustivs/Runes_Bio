@@ -11,9 +11,9 @@
 <body>
 	<script src="/_framework/aspnetcore-browser-refresh.js"></script>
 	<div class="nav">
-		<a class="active" href="Index">Home</a>
+		<a class="active" href="Index">Hjem</a>
 		<a href="About">Om Os</a>
-		<a href="Movie">Movies</a>
+		<a href="Movie">Film</a>
 		<div class="login">
 			<a id="login" href="Login">Login</a>
 		</div>
@@ -22,10 +22,10 @@
 		</div>
 	</div>
 	<div class="latestMovieBox" style="width: 250px;height: 600px;">
-		<a class="center_Small_Text">Latest Movies</a>
+		<a class="center_Small_Text">Nyeste Film</a>
 	</div>
 	<div class="latestMovieBox" style="float: right;">
-		<a class="center_Small_Text">Popular Movies</a>
+		<a class="center_Small_Text">Populære Film</a>
 		@foreach(string thing in Model.item())
 			{
 				<br />

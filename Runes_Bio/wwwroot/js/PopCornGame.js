@@ -56,7 +56,7 @@ function StartGame() {
                         document.body.removeChild(popcorn);
                         clearInterval(popcornfall);
                         var counter = document.getElementById('Counter');
-                        Lost(Counterbox, counter);
+                        Lost();
                     } else {
                         popcorn.style.top = (topPosition + fallSpeed) + 'px';
                     }
@@ -83,7 +83,7 @@ function StartGame() {
                                     if (x == 20) {
                                         clearInterval(collision);
                                         clearInterval(popcornfall);
-                                        Won(Counterbox);
+                                        Won();
                                     }
                                 }
                             }
@@ -95,22 +95,25 @@ function StartGame() {
     }
 }
 
-function Won(counter) {
+function Won() {
     var won = document.getElementById('won');
+    var counter = document.getElementsByClassName('PopCornCounter');
     won.style.visibility = 'visible';
     won.style.opacity = '1';
-    counter.style.opacity = '0';
-    counter.style.visibility = 'hidden';
+    counter[0].style.opacity = '0';
+    counter[0].style.visibility = 'hidden';
     setTimeout(function () {
         window.location.href = '/ToDo';
     }, 2000)
 }
-function Lost(CounterBox, Counter) {
+function Lost() {
     var lost = document.getElementById('lost');
+    var CounterBox = document.getElementsByClassName('PopCornCounter');
+    var Counter = document.getElementById('Counter');
     lost.style.visibility = 'visible';
     lost.style.opacity = '1';
-    CounterBox.style.opacity = '0';
-    CounterBox.style.visibility = 'hidden';
+    CounterBox[0].style.opacity = '0';
+    CounterBox[0].style.visibility = 'hidden';
     lost.innerText = 'Du tabte med en score på ' + Counter.innerText;
     setTimeout(function () {
         window.location.href = '/PopCorn';
