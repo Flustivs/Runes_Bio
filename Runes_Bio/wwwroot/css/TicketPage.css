@@ -1,0 +1,21 @@
+﻿.seat{
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    border-block: 2px;
+    box-sizing: border-box;
+    background-color: white;
+    z-index: 10;
+    position: fixed;
+}
+.seat:hover{
+    transition: 0.3s ease;
+    transform: scale(1.5);
+    background-color: darkred;
+}
+.screen{
+    transform: rotateX(70deg);
+    position: fixed;
+    top: 0%;
+    left: 35%;
+}

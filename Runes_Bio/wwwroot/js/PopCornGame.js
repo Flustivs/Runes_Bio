@@ -114,7 +114,7 @@ function Lost() {
     lost.style.opacity = '1';
     CounterBox[0].style.opacity = '0';
     CounterBox[0].style.visibility = 'hidden';
-    lost.innerText = 'Du tabte med en score på ' + Counter.innerText;
+    lost.innerHTML = 'Du tabte med en score på ' + Counter.innerHTML;
     setTimeout(function () {
         window.location.href = '/PopCorn';
     }, 2000)

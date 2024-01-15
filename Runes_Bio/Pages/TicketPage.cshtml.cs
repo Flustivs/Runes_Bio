@@ -5,7 +5,9 @@ namespace Runes_Bio.Pages
 {
     public class TicketPageModel : PageModel
     {
-        public void OnGet()
+		internal int left = 500;
+		internal int top = 240;
+		public void OnGet()
         {
         }
     }

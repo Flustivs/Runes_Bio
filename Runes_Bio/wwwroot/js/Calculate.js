@@ -11,6 +11,9 @@
         setTimeout(function () {
             congrats.style.opacity = '0';
             congrats.style.visibility = 'hidden';
+            setTimeout(function () {
+                document.location.href = '/ToDo';
+            }, 500);
         }, 2000)
     }
     else {
