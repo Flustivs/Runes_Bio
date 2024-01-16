@@ -6,6 +6,7 @@
 <head>
 	<link rel="stylesheet" href="/css/site.css" />
 	<link rel="stylesheet" href="/css/TicketPage.css" />
+	<script src="~/js/Ticket.js"></script>
 </head>
 <body>
 	<div class="nav">
@@ -24,18 +25,27 @@
 	</div>
 	<div>
 		@{
-			for(int i = 0; i < 6; i++)
+			for (int i = 0; i < 6; i++)
 			{
 				Model.top += 40;
 				Model.left = 500;
-				for(int x = 0; x < 10; x++)
+				Model._numPosition = 0;
+				for (int x = 0; x < 10; x++)
 				{
 					Model.left += 40;
-					<div class="Seat" style="top: @Model.top; left: @Model.left;">
-					</div>
+					Model._numPosition += 1;
+					<button type="submit" onclick="Clicked('@Model._aPosition[i]', @Model._numPosition)" class="Seat" id="@($"{Model._aPosition[i]}{Model._numPosition}")" style="top: @Model.top; left: @Model.left;"></button>
 				}
 			}
 		}
+		<div class="TermsBox">
+			<a style="top: 70%;" href="/Terms & Conditions.pdf" download="Terms_Condition_Runes_Bio">Terms & Conditions</a>
+			<br />
+			<input style="top: 75%;" type="checkbox" required />
+			<p style="top: 75%; left: 51%;">
+				Du er enig i Terms & Conditions
+			</p>
+		</div>
 	</div>
 </body>
 </html>

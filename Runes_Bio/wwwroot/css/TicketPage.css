@@ -9,13 +9,27 @@
     position: fixed;
 }
 .seat:hover{
-    transition: 0.3s ease;
+    transition: 0.3s ease-in-out;
     transform: scale(1.5);
     background-color: darkred;
 }
 .screen{
     transform: rotateX(70deg);
     position: fixed;
-    top: 0%;
+    top: -5%;
     left: 35%;
+}
+
+.TermsBox{
+    position: fixed;
+    top: 70%;
+    left: 40.5%;
+    border: 2px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 220px;
+    height: 120px;
+    background-color: white;
+    visibility: visible;
+    justify-content: center;
 }
