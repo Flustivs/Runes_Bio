@@ -1,26 +1,26 @@
-﻿function loggedin() {
-    let logged = localStorage.getItem('loggedin');
-    let loginbutton = document.getElementById('login');
-    let registerbutton = document.getElementById('register');
-    if (logged === 'true') {
-        loginbutton.style.visibility = 'hidden';
-        registerbutton.style.visibility = 'hidden';
-    }
-    if (loginbutton == null || registerbutton == null) {
-        console.log('No content of type loginButton or registerButton');
-    }
-    else {
-        loginbutton.style.visibility = 'visible';
-        registerbutton.style.visibility = 'visible';
-    }
-}
+﻿//function loggedin() {
+//    let logged = localStorage.getItem('loggedin');
+//    let loginbutton = document.getElementById('login');
+//    let registerbutton = document.getElementById('register');
+//    if (logged === 'true') {
+//        loginbutton.style.visibility = 'hidden';
+//        registerbutton.style.visibility = 'hidden';
+//    }
+//    if (loginbutton == null || registerbutton == null) {
+//        console.log('No content of type loginButton or registerButton');
+//    }
+//    else {
+//        loginbutton.style.visibility = 'visible';
+//        registerbutton.style.visibility = 'visible';
+//    }
+//}
 
-window.onload = function () {
-    var loggedin = localStorage.getItem('loggedin');
-    if (loggedin === 'true') {
-        document.getElementById('register').style.visibility = 'hidden';
-        document.getElementById('login').style.visibility = 'hidden';
-    }
+//window.onload = function () {
+//    var loggedin = localStorage.getItem('loggedin');
+//    if (loggedin === 'true') {
+//        document.getElementById('register').style.visibility = 'hidden';
+//        document.getElementById('login').style.visibility = 'hidden';
+//    }
 //    $('loginForm').on('submit', function (e) {
 //        e.preventDefault();
 //        $.ajax({
@@ -41,7 +41,7 @@ window.onload = function () {
 //            }
 //        });
 //    });
-}
+//}
 //$(document).ready(function () {
 //    $('#loginForm').on('submit', function (e) {
 //        e.preventDefault();

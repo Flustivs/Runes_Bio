@@ -2,6 +2,7 @@
 @model Runes_Bio.Pages.ToDoModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
+	Layout = "_Layout";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +13,6 @@
 	<script src="~/js/ToDo.js"></script>
 </head>
 <body>
-	<div class="nav">
-		<a class="active" href="EmployeeIndex">Hjem</a>
-		<a href="About">Om Os</a>
-		<a href="Movie">Film</a>
-		<a href="ToDo">Opgaver</a>
-	</div>
 	<div class="centerBox">
 		<button class="button" id="ButtonTrash" style="top: 30%" onclick="PickUpTrash()">Samle skrald op</button>
 		<button class="button" id="ButtonCalTicket" style="top: 50%" onclick="CalculateTicket()">Udregn billeter</button>

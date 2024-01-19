@@ -16,7 +16,7 @@
     height: 200px;
     text-align: center;
     display: flex;
-    align-items: first baseline;
+    align-items: baseline;
 }
 
 
@@ -29,14 +29,17 @@
     color: white;
     background-color: #0cb522;
     cursor: pointer;
-    margin-left: 25px;
+    margin-left: 120px;
 }
 
-.inputText{
-    padding: 20px;
+.inputText {
+    margin-top: 10px;
+    margin-right: 40px;
 }
-.inputField{
-    margin-right: -10px;
+
+.inputField {
+    margin-right: -140px;
+    margin-top: -40px;
     float: right;
 }
 

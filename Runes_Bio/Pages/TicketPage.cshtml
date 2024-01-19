@@ -1,6 +1,7 @@
 ﻿@page
 @model Runes_Bio.Pages.TicketPageModel
 @{
+	Layout = "_Layout";
 }
 <html>
 <head>
@@ -9,17 +10,6 @@
 	<script src="~/js/Ticket.js"></script>
 </head>
 <body>
-	<div class="nav">
-		<a class="active" href="Index">Hjem</a>
-		<a href="About">Om Os</a>
-		<a href="Movie">Film</a>
-		<div class="login">
-			<a id="login" href="Login">Login</a>
-		</div>
-		<div class="login">
-			<a id="register" href="Register">Register</a>
-		</div>
-	</div>
 	<div class="screen">
 		<img src="/Pictures/screen.png" />
 	</div>
@@ -28,7 +18,7 @@
 			for (int i = 0; i < 6; i++)
 			{
 				Model.top += 40;
-				Model.left = 500;
+				Model.left = 150;
 				Model._numPosition = 0;
 				for (int x = 0; x < 10; x++)
 				{
@@ -39,12 +29,13 @@
 			}
 		}
 		<div class="TermsBox">
-			<a style="top: 70%;" href="/Terms & Conditions.pdf" download="Terms_Condition_Runes_Bio">Terms & Conditions</a>
+			<p style="top: 70%; align-content: center;" href="/Terms & Conditions.pdf" download="Terms_Condition_Runes_Bio">Terms & Conditions</p>
 			<br />
-			<input style="top: 75%;" type="checkbox" required />
-			<p style="top: 75%; left: 51%;">
+			<input style="top: 75%; position: fixed; align-content: center;" type="checkbox" required />
+			<p>
 				Du er enig i Terms & Conditions
 			</p>
+			<button style="top:80%; position: fixed; align-content: center;" onclick="Bought()" class="button" type="submit">Køb</button>
 		</div>
 	</div>
 </body>

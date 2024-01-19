@@ -1,6 +1,7 @@
 ﻿@page
 @model Runes_Bio.Pages.PopCornModel
 @{
+	Layout = "_Layout";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -12,28 +13,22 @@
 	<script src="~/js/PopCornGame.js"></script>
 </head>
 <body>
-	<div class="nav">
-		<a class="active" href="EmployeeIndex">Hjem</a>
-		<a href="About">Om Os</a>
-		<a href="Movie">Film</a>
-		<a href="ToDo">Opgaver</a>
-	</div>
-	<div class="InputValue" style="top: 25%; width: 230px; height: 100px;">
-		<a>Hvis der er en popcorn der falder på jorden taber du.</a>
-		<a>Dit Mål vil være 20 popcorn</a>
+	<div class="InputValue" style="top: 25%; width: 230px; height: 180px;">
+		<p>Hvis der er en popcorn der falder på jorden taber du.</p>
+		<p>Dit Mål vil være 20 popcorn</p>
 	</div>
 	<div class="InputValue">
-		<a>Skriv antal Popcorn der skal falde i sekundet</a>
+		<p>Skriv antal Popcorn der skal falde i sekundet</p>
 		<input type="number" id="PopCornPS" />
 	</div>
 	<div class="ResultBox" id="won">
-		<a style="align-content: center;">Du Vandt</a>
+		<p style="align-content: center;">Du Vandt</p>
 	</div>
 	<div class="ResultBox" id="lost">
-		<a style="align-content: center;">Du tabte</a>
+		<p style="align-content: center;">Du tabte</p>
 	</div>
 	<img class="PopCornImg" style="visibility: hidden" src="/Pictures/PopCornBox.png" id="PopCornBox" />
-	<button style="position: fixed; top: 46%; left: 46%" id="StartGame" onclick="StartGame()">Start PopCorn Spil</button>
+	<button style="position: fixed; top: 46%; left: 43%" id="StartGame" onclick="StartGame()">Start PopCorn Spil</button>
 	<div class="PopCornCounter">
 		<p id="Counter" style="font-size: 40px;">0</p>
 	</div>

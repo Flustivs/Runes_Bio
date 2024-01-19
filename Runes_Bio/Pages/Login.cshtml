@@ -1,6 +1,7 @@
 ﻿@page
 @model Runes_Bio.Pages.LoginModel
 @{
+	Layout = "_Layout";
 }
 <head>
 	<link rel="stylesheet" href="/css/site.css">
@@ -9,30 +10,19 @@
 </head>
 <body>
 	<script src="/_framework/aspnetcore-browser-refresh.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@* 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 		loggedin()
-		</script>
-	<div class="nav">
-		<a class="active" href="Index">Hjem</a>
-		<a href="About">Om Os</a>
-		<a href="Movie">Film</a>
-		<div class="login">
-			<a id="register" href="Register">Register</a>
-		</div>
-	</div>
+		</script> *@
 	<div class="centerBox">
 		<div class="loginBox" style="height: 200px;">
 			<form id="loginForm" method="post" asp-page="/Login">
 				@Html.AntiForgeryToken()
 				<br />
-				<a class="inputText">Email: <input type="text" name="emailID" placeholder="Tims1234@gmail.com" required /></a>
+				<p class="inputText" style="margin-right: 20px; margin-top: -10px;">Email <input style="margin-left: 25px;" type="text" name="emailID" placeholder="Tims1234@gmail.com" required /></p>
+				<p class="inputText" style="margin-right: 20px;">Password <input style="margin-left: 10px;" type="text" name="passID" placeholder="pAss1243!" required /></p>
 				<br />
-				<br />
-				<a class="inputText">Password: <input type="text" name="passID" placeholder="pAss1243!" required /></a>
-				<br />
-				<br />
-				<button type="submit" class="submitButton">Login</button>
+				<button type="submit" class="submitButton" style="margin-left: -1px;">Login</button>
 			</form>
 		</div>
 	</div>

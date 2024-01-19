@@ -13,23 +13,26 @@
     transform: scale(1.5);
     background-color: darkred;
 }
-.screen{
+.screen {
     transform: rotateX(70deg);
     position: fixed;
     top: -5%;
-    left: 35%;
+    left: 12.5%;
 }
 
-.TermsBox{
+.TermsBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    top: 70%;
-    left: 40.5%;
+    top: 10%;
+    left: 65%;
     border: 2px;
     border-radius: 3px;
     box-sizing: border-box;
-    width: 220px;
-    height: 120px;
+    width: 420px;
+    height: 620px;
     background-color: white;
     visibility: visible;
-    justify-content: center;
 }

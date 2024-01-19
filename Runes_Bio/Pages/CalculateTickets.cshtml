@@ -1,6 +1,7 @@
 ﻿@page
 @model Runes_Bio.Pages.CalculateTicketsModel
 @{
+	Layout = "_Layout";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -12,20 +13,14 @@
 	<script src="~/js/Calculate.js"></script>
 </head>
 <body>
-	<div class="nav">
-		<a class="active" href="EmployeeIndex">Hjem</a>
-		<a href="About">Om Os</a>
-		<a href="Movie">Film</a>
-		<a href="ToDo">Opgaver</a>
-	</div>
 	<div class="centerBox">
 		<header style="font-size: 35px; text-align: center;position: fixed; top: 10%; color: lightcyan;">
 			Her der nogle opgaver
 		</header>
 		<div class="popBox" id="CongratsBox">Godt Klaret</div>
 		<div class="popBox" id="FailedBox">Nå Nå, Du tabte</div>
-		<div class="textBox">
-			<a>
+		<div class="textBox" style="font-size: 14px;">
+			<div>
 				<br />
 				<br />
 				<br />
@@ -34,51 +29,51 @@
 					string[] introSplit = intro.Split('.');
 					foreach (string item in introSplit)
 					{
-						<p>@item</p>
+					<p>@item</p>
 					}
 				}
-			</a>
+			</div>
 			<br />
-			<a class="box" style="top: 10%; left: 5%;">
+			<div class="box" style="top: 10%; left: 5%;">
 				@{
 					string[] question1 = Model.GetQuestion(2).Split('.');
 					foreach (string item in question1)
 					{
-						<p>@item</p>
+					<p>@item</p>
 					}
 				}
-				<input type="number" id="question1" />
-			</a>
-			<a class="box" style="top: 50%; left: 5%; height: 150px; width: 425px;">
+			<input type="number" id="question1" />
+			</div>
+			<div class="box" style="top: 50%; left: 5%; height: 150px; width: 425px;">
 				@{
 					string[] question2 = Model.GetQuestion(3).Split('.');
 					string[] question2Split = question2[0].Split(',');
-					<p>@question2Split[0]</p>
-					<p>@question2Split[1], @question2Split[2]</p>
-					<p>@question2[1]</p>
+				<p>@question2Split[0]</p>
+				<p>@question2Split[1], @question2Split[2]</p>
+				<p>@question2[1]</p>
 				}
-				<input type="number" id="question2" />
-			</a>
-			<a class="box" style="top: 10%; left: 68%; height: 190px;">
+			<input type="number" id="question2" />
+			</div>
+			<div class="box" style="top: 10%; left: 68%; height: 190px;">
 				@{
 					string[] question3 = Model.GetQuestion(4).Split('.');
-					<p>@question3[0]</p>
-					<p>@question3[1]</p>
-					<p>@question3[2], @question3[3]</p>
+				<p>@question3[0]</p>
+				<p>@question3[1]</p>
+				<p>@question3[2], @question3[3]</p>
 				}
-				<input type="number" id="question3" />
-			</a>
-			<a class="box" style="top: 50%; left: 68%; height: 150px;">
+			<input type="number" id="question3" />
+			</div>
+			<div class="box" style="top: 50%; left: 68%; height: 150px;">
 				@{
 					string[] question4 = Model.GetQuestion(5).Split('.');
-					<p>@question4[0]</p>
-					<p>@question4[1]</p>
+				<p>@question4[0]</p>
+				<p>@question4[1]</p>
 				}
-				<input type="number" id="question4" />
-			</a>
+			<input type="number" id="question4" />
+			</div>
 			<button class="button" style="left: 46%; top: 40%;" type="submit" id="SubmitCal" onclick="CheckValue(@Model.GetAnswer(1), @Model.GetAnswer(2), @Model.GetAnswer(3), @Model.GetAnswer(4))">
-			Færdig
-		</button>
+				Færdig
+			</button>
 		</div>
 	</div>
 </body>

@@ -1,26 +1,38 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Runes_Bio</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Movie.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Runes_Bio.styles.css" asp-append-version="true" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Runes_Bio</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/Movie.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Runes_Bio.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Runes_Bio - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
-    @await RenderSectionAsync("Scripts", required: false)
+	<div class="nav">
+		@{
+			if (string.IsNullOrEmpty(Context.Session.GetString("Logged")))
+			{
+				<a class="active" href="Index">Hjem</a>
+				<a href="About">Om Os</a>
+				<a href="Movie">Film</a>
+				<div class="login">
+					<a id="login" href="Login">Login</a>
+				</div>
+				<div class="login">
+					<a id="register" href="Register">Register</a>
+				</div>
+			}
+			else
+			{
+				<a class="active" href="Index">Hjem</a>
+				<a href="About">Om Os</a>
+				<a href="Movie">Film</a>
+			}
+		}
+	</div>
+	@RenderBody();
 </body>
 </html>

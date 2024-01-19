@@ -24,9 +24,10 @@ namespace Runes_Bio.Pages
         {
         }
         [HttpPost]
-        public void SaveSeats(string[] seats, string email)
+        public IActionResult SaveSeats(string[] seats, string email)
         {
-
+            _ticket.SaveSeats(seats, email);
+            return Page();
         }
     }
 }

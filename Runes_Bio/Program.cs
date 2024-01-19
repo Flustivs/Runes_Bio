@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using Runes_Bio.Pages;
+using Runes_Bio.Controller;
 
 namespace Runes_Bio
 {
@@ -11,6 +12,22 @@ namespace Runes_Bio
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
+
+			builder.Services.AddControllersWithViews()
+	   .AddJsonOptions(options =>
+		   options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy("AllowAllOrigins",
+					builder =>
+					{
+						builder
+							.AllowAnyOrigin()
+							.AllowAnyHeader()
+							.AllowAnyMethod();
+					});
+			});
 
 			// Add services to the container.
 			builder.Services.AddRazorPages();
@@ -28,7 +45,6 @@ namespace Runes_Bio
 			});
 
 			var app = builder.Build();
-
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())
 			{
@@ -36,7 +52,7 @@ namespace Runes_Bio
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
-
+			app.UseCors("AllowAllOrigins");
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 

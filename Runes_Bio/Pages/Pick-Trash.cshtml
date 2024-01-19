@@ -2,6 +2,7 @@
 @model Runes_Bio.Pages.ToDoModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
+	Layout = "_Layout";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -13,18 +14,6 @@
 <body>
 	<script>reset()</script>
 	<div class="background"></div>
-	<div class="nav">
-		<a class="active" href="EmployeeIndex">Hjem</a>
-		<a href="About">Om Os</a>
-		<a href="Movie">Film</a>
-		<a href="ToDo">Opgaver</a>
-		<div class="login">
-			<a href="Login">Login</a>
-		</div>
-		<div class="login">
-			<a href="Register">Register</a>
-		</div>
-	</div>
 	<div class="centerBox">
 		<form method="post" action="/Pick-Trash" onsubmit="return hideImage(event, 1)">
 			@Html.AntiForgeryToken()
