@@ -30,8 +30,15 @@ namespace Runes_Bio.Pages
 				verified = hash.Verify(passID, pass);
 				if (verified)
 				{
-					var result = new { Success = true, Message = "Logged in successfully!" };
-					return RedirectToPage("/EmployeeIndex");
+					if (roleId == 0)
+					{
+                        HttpContext.Session.SetString("Logged", "Admin");
+                    }
+					else
+					{
+                        HttpContext.Session.SetString("Logged", "Employee");
+                    }
+                    return RedirectToPage("/Index");
 				}
 			}
 

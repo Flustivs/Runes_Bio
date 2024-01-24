@@ -16,6 +16,11 @@ namespace Runes_Bio.Pages
         }
         public void OnGet()
         {
+            string logged = HttpContext.Session.GetString("Logged");
+            if (string.IsNullOrEmpty(logged))
+            {
+                HttpContext.Response.Redirect("/Index");
+            }
         }
         public string GetQuestion(byte num)
         {
