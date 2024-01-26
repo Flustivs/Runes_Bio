@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,8 +11,10 @@
 </head>
 <body>
 	<div class="nav">
+		@Html.AntiForgeryToken()
 		@{
-			if (string.IsNullOrEmpty(Context.Session.GetString("Logged")))
+			string logged = Context.Session.GetString("Logged");
+			if (string.IsNullOrEmpty(logged))
 			{
 				<a class="active" href="Index">Hjem</a>
 				<a href="About">Om Os</a>
@@ -22,22 +23,28 @@
 					<a id="login" href="Login">Login</a>
 				</div>
 			}
-			if (Context.Session.GetString("Logged") == "Admin")
+			if (logged == "Admin")
 			{
 				<a class="active" href="Index">Hjem</a>
 				<a href="About">Om Os</a>
 				<a href="Movie">Film</a>
 				<a href="ToDo">Opgaver</a>
 				<div class="login">
+					<a id="logout" href="Login">LogOut</a>
+				</div>
+				<div class="login">
 					<a id="register" href="Register">Register ny</a>
                 </div>
 			}
-			if (Context.Session.GetString("Logged") == "Employee")
+			if (logged == "Employee")
 			{
 				<a class="active" href="Index">Hjem</a>
 				<a href="About">Om Os</a>
 				<a href="Movie">Film</a>
 				<a href="ToDo">Opgaver</a>
+				<div class="login">
+					<a id="logout" href="Login">LogOut</a>
+				</div>
 			}
 		}
 	</div>

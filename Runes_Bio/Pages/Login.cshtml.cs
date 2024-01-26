@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Runes_Bio.Controller;
 using Newtonsoft.Json;
 using Runes_Bio.Dbconnection;
+using Microsoft.AspNetCore.Http;
 
 namespace Runes_Bio.Pages
 {
@@ -15,6 +16,14 @@ namespace Runes_Bio.Pages
         public string emailID { get; set; }
 		[BindProperty]
 		public string passID { get; set; }
+		public void OnGet()
+		{
+			string logged = HttpContext.Session.GetString("Logged");
+			if (logged == "Admin" || logged == "Employee")
+			{
+				HttpContext.Session.SetString("Logged", "");
+			}
+		}
 
 		[HttpPost]
 		public IActionResult OnPost()
@@ -42,7 +51,7 @@ namespace Runes_Bio.Pages
 				}
 			}
 
-			var errorResult = new { Success = false, Message = "Invalid login credentials." };
+			var errorResult = new { Success = false, Message = "Ikke gyldigt LogIn." };
 			return RedirectToPage("/Login");
 		}
 

@@ -1,14 +1,17 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Runes_Bio.Controller;
+using Runes_Bio.Model;
 
 namespace Runes_Bio.Pages
 {
-    public class TicketPageModel : PageModel
+	[IgnoreAntiforgeryToken]
+	public class TicketPageModel : PageModel
     {
         private readonly TicketController _ticket = new TicketController();
-		internal int left = 500;
-		internal int top = 200;
+        internal int left = 15;
+        internal int top = 28;
         internal string[] _aPosition =
         {
             "a",
@@ -20,14 +23,24 @@ namespace Runes_Bio.Pages
             "g"
         };
         internal byte _numPosition;
-		public void OnGet()
+        public void OnGet()
         {
         }
         [HttpPost]
-        public IActionResult SaveSeats(string[] seats, string email)
+        public IActionResult OnPostSaveSeats([FromBody] SeatsData data)
         {
-            _ticket.SaveSeats(seats, email);
-            return Page();
-        }
-    }
+            try
+            {
+                _ticket.SaveSeats(data.seats, data.email);
+				var responseObject = new { status = "success" };
+				return StatusCode(200, responseObject);
+			}
+			catch
+            {
+				var errorResponseObject = new { status = "error", message = "Internal server error" };
+				return StatusCode(500, errorResponseObject);
+
+			}
+		}
+	}
 }

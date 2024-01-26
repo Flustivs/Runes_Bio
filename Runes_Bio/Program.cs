@@ -45,6 +45,7 @@ namespace Runes_Bio
 			});
 
 			var app = builder.Build();
+			    app.UseCors("AllowAllOrigins"); // Handling CORS
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())
 			{
@@ -52,7 +53,7 @@ namespace Runes_Bio
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
-			app.UseCors("AllowAllOrigins");
+			app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
