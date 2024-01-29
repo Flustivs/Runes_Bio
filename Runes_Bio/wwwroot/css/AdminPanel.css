@@ -1,0 +1,36 @@
+﻿.box{
+    width: 400px;
+    height: 250px;
+    position: fixed;
+    left: 10%;
+    top: 10%;
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.popUpBox {
+    width: 600px;
+    height: 400px;
+    left: 30%;
+    top: 25%;
+    position: fixed;
+    background-color: lightgray;
+    border-radius: 40px;
+    box-sizing: border-box;
+    border-color: black;
+    z-index: 10;
+    opacity: 0;
+}
+
+@keyframes flyin{
+    from{
+        transform: translateX(200vh);
+    }
+    to{
+        transform: translateX(0vh);
+        opacity: 1;
+    }
+}
+.flyin{
+    animation: flyin 2s forwards;
+}
