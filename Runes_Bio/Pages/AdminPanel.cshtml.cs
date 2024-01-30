@@ -13,6 +13,10 @@ namespace Runes_Bio.Pages
                 HttpContext.Response.Redirect("/Index");
             }
         }
+        public void OnPost()
+        {
+            Console.WriteLine("god morgon Lucas, hur mår du?");
+        }
 
     }
 }
