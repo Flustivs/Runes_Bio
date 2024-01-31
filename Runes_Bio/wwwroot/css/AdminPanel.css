@@ -1,12 +1,18 @@
-﻿.box{
-    width: 400px;
-    height: 250px;
+﻿.box {
+    width: 300px;
+    height: 150px;
     position: fixed;
     left: 10%;
     top: 10%;
     background-color: white;
     border-radius: 10px;
     box-sizing: border-box;
+    transition: transform 0.5s ease-in-out;
+    text-align: center;
+}
+
+.box:hover{
+    transform: scale(1.1);
 }
 .popUpBox {
     width: 600px;
@@ -20,6 +26,13 @@
     border-color: black;
     z-index: 10;
     opacity: 0;
+    visibility: hidden;
+}
+
+.closePopBox{
+    position: absolute;
+    top: 3px;
+    right: 25px;
 }
 
 .buttonStyle{
@@ -31,6 +44,22 @@
     color: forestgreen;
 }
 
+.register {
+    background-color: #4CAF50;
+    color: white;
+    width: 150px;
+    height: 60px;
+    border: 24px;
+    box-sizing: border-box;
+
+}
+a.register{
+    text-decoration: none;
+}
+.register:hover{
+    background-color: forestgreen;
+    transform: scale(1.2);
+}
 
 @keyframes flyin{
     from{
@@ -39,6 +68,7 @@
     to{
         transform: translateX(0vh);
         opacity: 1;
+        visibility: visible;
     }
 }
 .flyin{

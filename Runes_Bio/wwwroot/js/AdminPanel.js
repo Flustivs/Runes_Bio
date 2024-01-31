@@ -1,6 +1,6 @@
 ﻿function FlyInBox(num) {
-    var box = document.getElementsByClassName('popUpBox');
-    box[0].classList.remove('flyin');
+    var box = document.getElementById('FlyInBox');
+    box.classList.remove('flyin');
     setTimeout(function () {
         var flybox = document.getElementById('FlyInBox');
         var olddiv = document.getElementById('FlyBoxText');
@@ -12,7 +12,7 @@
         div.style.textAlign = 'center';
         switch (num) {
             case 1:
-                box[0].classList.add('flyin');
+                box.classList.add('flyin');
                 div.innerHTML = 'Hvilke priser vil du gerne ændre bare skriv den ønskede pris udfra den billet';
                 var form = document.createElement('form');
                 form.method = 'post';
@@ -28,18 +28,21 @@
                 flybox.appendChild(div);
                 break;
             case 2:
-                box[0].classList.add('flyin');
+                box.classList.add('flyin');
                 div.innerHTML = 'Hvilke film vil du gerne tilføje / fjerne';
                 flybox.appendChild(div);
                 break;
             case 3:
-                box[0].classList.add('flyin');
-                var div3 = document.createElement('div');
-                div3.id = 'div3';
-                flybox.appendChild(div3);
+                box.classList.add('flyin');
+                flybox.appendChild(div);
                 break;
             default:
                 break;
         }
     }, 200)
+}
+
+function ClosePopUp() {
+    var popUpBox = document.getElementById('FlyInBox');
+    popUpBox.classList.remove('flyin');
 }
