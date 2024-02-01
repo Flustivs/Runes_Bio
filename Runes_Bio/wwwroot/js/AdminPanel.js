@@ -4,8 +4,12 @@
     setTimeout(function () {
         var flybox = document.getElementById('FlyInBox');
         var olddiv = document.getElementById('FlyBoxText');
+        var preForm = document.getElementById('allForm');
         if (olddiv != null) {
             olddiv.remove();
+            if (preForm.lastChild && preForm.lastChild.tagName === 'INPUT') {
+                preForm.removeChild(preForm.lastChild);
+            }
         }
         var div = document.createElement('div');
         div.id = 'FlyBoxText';
@@ -14,17 +18,13 @@
             case 1:
                 box.classList.add('flyin');
                 div.innerHTML = 'Hvilke priser vil du gerne ændre bare skriv den ønskede pris udfra den billet';
-                var form = document.createElement('form');
-                form.method = 'post';
-                var button = document.createElement('button');
-                button.type = 'submit';
-                button.innerHTML = 'Bekræft'
+
                 var inputfield = document.createElement('input');
                 inputfield.type = 'number';
                 inputfield.placeholder = '89.95';
-                form.appendChild(inputfield);
-                form.appendChild(button);
-                div.appendChild(form);
+                inputfield.name = 'Inputfield';
+
+                preForm.appendChild(inputfield);
                 flybox.appendChild(div);
                 break;
             case 2:
@@ -39,7 +39,7 @@
             default:
                 break;
         }
-    }, 200)
+    }, 20)
 }
 
 function ClosePopUp() {

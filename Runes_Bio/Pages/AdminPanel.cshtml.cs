@@ -5,6 +5,7 @@ namespace Runes_Bio.Pages
 {
     public class AdminPanelModel : PageModel
     {
+        public float inputfield { get; set; }
         public void OnGet()
         {
             string logged = HttpContext.Session.GetString("Logged");
@@ -13,11 +14,11 @@ namespace Runes_Bio.Pages
                 HttpContext.Response.Redirect("/Index");
             }
         }
-        public IActionResult OnPost()
+        public void OnPost()
         {
-            Console.WriteLine("god morgon Lucas, hur mår du?");
-            return Page();
+            Console.WriteLine($"Received input: {inputfield}");
         }
+
 
     }
 }
