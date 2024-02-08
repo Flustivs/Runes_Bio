@@ -5,7 +5,8 @@ namespace Runes_Bio.Pages
 {
     public class AdminPanelModel : PageModel
     {
-        public float inputfield { get; set; }
+        public string normalPrice = "46";
+        public string luxuryPrice = "98";
         public void OnGet()
         {
             string logged = HttpContext.Session.GetString("Logged");
@@ -14,9 +15,9 @@ namespace Runes_Bio.Pages
                 HttpContext.Response.Redirect("/Index");
             }
         }
-        public void OnPost()
+        public void OnPost(float? Inputfield1, float? Inputfield2)
         {
-            Console.WriteLine($"Received input: {inputfield}");
+            Console.WriteLine($"Received input: {Inputfield1}, {Inputfield2}");
         }
 
 

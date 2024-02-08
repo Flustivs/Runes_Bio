@@ -9,8 +9,10 @@
     <script src="/js/AdminPanel.js"></script>
 </head>
 <div>
+    <input type="hidden" id="normalPrice" value="@Model.normalPrice" />
+    <input type="hidden" id="luxuryPrice" value="@Model.luxuryPrice" />
     <div class="box">
-        <button type="submit" onclick="FlyInBox(1)">shit</button>
+        <button type="submit" onclick ="FlyInBox(1)">shit</button>
     </div>
     <div class="box" style="left: 69.5%;">
         <button type="submit" onclick="FlyInBox(2)">Button 2</button>
@@ -30,8 +32,8 @@
         <button type="button" class="closePopBox" onclick="ClosePopUp()">X</button>
         <br />
         <form method="post" id="allForm" asp-page="/AdminPanel">
-            @Html.AntiForgeryToken();
-            <button class="cofirmButton" type="submit">Bekræft</button>
+            @Html.AntiForgeryToken()
+            <button class="confirmButton" type="submit">Bekræft</button>
         </form>
     </div>
 </div>

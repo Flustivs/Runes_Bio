@@ -41,7 +41,18 @@
 }
 
 .confirmButton {
-    
+    position: fixed;
+    top: 80%;
+    left: 43.5%;
+    width: 13%;
+    height: 8%;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.confirmButton:hover{
+    transform: scale(1.1);
+    background-color: forestgreen;
 }
 
 .buttonStyle{
@@ -56,11 +67,10 @@
 .register {
     background-color: #4CAF50;
     color: white;
-    width: 150px;
+    width: 160px;
     height: 60px;
-    border: 24px;
+    border: 2px solid transparent;
     box-sizing: border-box;
-
 }
 a.register{
     text-decoration: none;

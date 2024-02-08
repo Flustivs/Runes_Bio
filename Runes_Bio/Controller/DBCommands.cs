@@ -2,13 +2,15 @@
 {
 	public class DBCommands
 	{
-		Dbconnection.Connection db = new Dbconnection.Connection();
-		internal bool EmailChecker(string input, byte num)
+		Dbconnection.Connection admindb = new Dbconnection.Connection();
+        Dbconnection.Connection empdb = new Dbconnection.Connection();
+        Dbconnection.Connection db = new Dbconnection.Connection();
+        internal bool EmailChecker(string input, byte num)
 		{
 			List<string> admin = new List<string>();
 			List<string> employee = new List<string>();
-			admin = db.DBConnection("SELECT COUNT(adminID) FROM Administrator");
-			employee = db.DBConnection("SELECT COUNT(employeeID) FROM employee");
+			admin = admindb.DBConnection("SELECT COUNT(adminID) FROM Administrator");
+			employee = empdb.DBConnection("SELECT COUNT(employeeID) FROM employee");
 			int numEmployee = int.Parse(employee[0]);
 			int numAdmin = int.Parse(admin[0]);
 			List<string> passList = new List<string>();
@@ -17,13 +19,13 @@
 			switch (num)
 			{
 				case 0:
-					dbCmd = "SELECT codeWord FROM Administrator WHERE adminID = ";
+					dbCmd = "SELECT password FROM Administrator WHERE adminID = ";
 					break;
 				case 1:
 					dbCmd = "SELECT email FROM Administrator WHERE adminID = ";
 					break;
 				case 2:
-					dbCmd = "SELECT codeWord FROM Employee WHERE employeeID = ";
+					dbCmd = "SELECT password FROM Employee WHERE employeeID = ";
 					break;
 				case 3:
 					dbCmd = "SELECT email FROM Employee WHERE employeeID = ";
@@ -56,11 +58,11 @@
 			{
 				if (num == 0)
 				{
-					pass = db.DBConnection($"SELECT codeWord FROM Administrator WHERE email = '{email}'");
+					pass = db.DBConnection($"SELECT password FROM Administrator WHERE email = '{email}'");
 				}
 				if (num == 1)
 				{
-					pass = db.DBConnection($"SELECT codeWord FROM Employee WHERE email = '{email}'");
+					pass = db.DBConnection($"SELECT password FROM Employee WHERE email = '{email}'");
 				}
 				return pass[0];
 			}
