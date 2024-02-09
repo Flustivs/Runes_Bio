@@ -27,9 +27,9 @@ namespace Runes_Bio.Pages
         {
         }
 
-        public void OnPost(string seat, string name, string email)
+        public void OnPost(string seat, string name, string email, string movieName, int ticketPrice)
         {
-
+            _ticket.SaveTicket(seat, name, email, movieName, ticketPrice.ToString());
 		}
 	}
 }

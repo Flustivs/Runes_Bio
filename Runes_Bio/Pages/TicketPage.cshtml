@@ -37,7 +37,12 @@
             </p>
             <input style="top: 75%; position: fixed; text-align: center;" type="checkbox" required />
             <p>Indtast venligst dit navn: <input id="userName" name="name" type="text" required /></p>
-            <p>Indtast venligst din email: <input id="userEmail" name="email" type="text" required /></p>
+            <p>Indtast venligst din email: <input id="userEmail" name="email" type="email" required /></p>
+            <br />
+            <p>Hvilke slags billetter kunne du tænke dig: <select name="Choice" id="DropDown">
+                <option value="one">Luksus billet: @</option>
+                <option value="two">Normal billet: @</option>
+            </select></p>
             <button style="top:80%; left: 77.3%; position: fixed; align-content: center;" onclick="Bought(document.getElementById('userName').value, document.getElementById('userEmail').value)" class="button" type="submit">Køb</button>
         </form>
     </div>
