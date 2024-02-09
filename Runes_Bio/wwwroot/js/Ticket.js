@@ -19,31 +19,12 @@ function Clicked(aPos, numPos) {
     }
 }
 
-function Bought(email) {
-    let data = {
-        seats: positions,
-        email: email
-    }
-
-    jQuery.ajax({
-        url: "/TicketPage?handler=OnPostSaveSeats",
-        type: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        data: JSON.stringify(data),
-        success: function (response) {
-            console.log("Response:", response);
-            if (response === "success") {
-                console.log("Success!");
-            } else {
-                console.log("Unknown response:", response);
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error("AJAX Error:", textStatus, errorThrown);
-            console.log("Response Text:", jqXHR.responseText);
-        }
-
-    });
+function Bought(name, email) {
+    console.log(name + ". " + email);
+    var hiddenInput = document.getElementById('inputSeat');
+    let pos = '';
+    positions.forEach(function (item) {
+        pos += ' ' + item;
+    })
+    hiddenInput.value = pos;
 }

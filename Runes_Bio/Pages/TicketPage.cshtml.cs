@@ -26,21 +26,10 @@ namespace Runes_Bio.Pages
         public void OnGet()
         {
         }
-        [HttpPost]
-        public IActionResult OnPostSaveSeats([FromBody] SeatsData data)
-        {
-            try
-            {
-                _ticket.SaveSeats(data.seats, data.email);
-				var responseObject = new { status = "success" };
-				return StatusCode(200, responseObject);
-			}
-			catch
-            {
-				var errorResponseObject = new { status = "error", message = "Internal server error" };
-				return StatusCode(500, errorResponseObject);
 
-			}
+        public void OnPost(string seat, string name, string email)
+        {
+
 		}
 	}
 }
