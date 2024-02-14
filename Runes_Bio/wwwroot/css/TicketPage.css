@@ -26,13 +26,13 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 10%;
+    top: 20%;
     left: 65%;
     border: 2px;
     border-radius: 3px;
     box-sizing: border-box;
     width: 420px;
-    height: 620px;
+    height: 500px;
     background-color: white;
     visibility: visible;
 }

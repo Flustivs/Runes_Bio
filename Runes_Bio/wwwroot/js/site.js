@@ -60,3 +60,7 @@ var elements = document.getElementsByClassName('site');
 for (let i = 0; i < elements.length; i++) {
     elements[i].addEventListener('click', function (e) { hideImage(e, i + 1); });
 }
+
+function SaveMovie(movie) {
+    sessionStorage.setItem('SelectedMovie', movie);
+}

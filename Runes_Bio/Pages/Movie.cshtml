@@ -6,6 +6,7 @@
 <head>
 	<link rel="stylesheet" href="/css/site.css">
 	<link rel="stylesheet" href="/css/Movie.css">
+	<script src="/js/site.js"></script>
 </head>
 <body>
 	<script src="/_framework/aspnetcore-browser-refresh.js"></script>
@@ -16,9 +17,10 @@
 		<p class="center_Small_Text">Populære Film</p>
 		@foreach(string thing in Model.item())
 			{
+				Model.num += 1;
 				<br />
 				<br />
-				<p>@thing</p>
+				<a href="TicketPage" onclick="SaveMovie(@thing)">@thing</a>
 			}
 
 	</div>

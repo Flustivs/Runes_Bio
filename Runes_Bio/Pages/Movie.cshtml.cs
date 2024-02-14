@@ -7,6 +7,7 @@ namespace Runes_Bio.Pages
     public class MovieModel : PageModel
     {
 		Dbconnection.Connection dbConnection = new Dbconnection.Connection();
+		public int num;
         public void OnGet(){}
 		public List<string> item()
 		{

@@ -23,8 +23,13 @@ function Bought(name, email) {
     console.log(name + ". " + email);
     var hiddenInput = document.getElementById('inputSeat');
     let pos = '';
+
+    var dropdown = document.getElementById('DropDown');
+    var hiddenPrice = document.getElementById('inputPrice');
+    hiddenPrice.value = dropdown.value;
     positions.forEach(function (item) {
         pos += ' ' + item;
-    })
+    })>	Bought [localhost꞉7017/js/Ticket.js] Line 27	JavaScript
+
     hiddenInput.value = pos;
 }

@@ -14,6 +14,7 @@
 .box:hover{
     transform: scale(1.1);
 }
+
 .popUpBox {
     width: 600px;
     height: 400px;
@@ -27,6 +28,28 @@
     z-index: 10;
     opacity: 0;
     visibility: hidden;
+}
+
+.movieList {
+    width: 300px;
+    height: 300px;
+    position: fixed;
+    left: 48%;
+    top: 20%;
+    background-color: darkgray;
+    border-radius: 40px;
+    box-sizing: border-box;
+    border-color: black;
+    overflow-y: auto;
+    max-height: 280px;
+}
+
+.movieInput{
+    height: 30px;
+    position: fixed;
+    left: 12%;
+    top: 30%;
+    background-color: darkgray;
 }
 
 .closePopBox {
