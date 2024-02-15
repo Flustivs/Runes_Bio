@@ -10,12 +10,17 @@ namespace Runes_Bio.Pages
         HashController hash = new HashController();
         public void OnGet()
         {
-            string logged = HttpContext.Session.GetString("Logged");
-            if (logged != "Admin")
-            {
-                HttpContext.Response.Redirect("/Index");
-            }
-        }
+			string admin = HttpContext.Session.GetString("Admin");
+			string employee = HttpContext.Session.GetString("Employee");
+			if (!string.IsNullOrEmpty(admin))
+			{
+				HttpContext.Session.SetString("Logged", admin + ".ad");
+			}
+			if (!string.IsNullOrEmpty(employee))
+			{
+				HttpContext.Session.SetString("Logged", employee + ".em");
+			}
+		}
         [BindProperty]
         public string emailID { get; set; }
 		[BindProperty]

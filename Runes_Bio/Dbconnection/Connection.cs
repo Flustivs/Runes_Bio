@@ -28,7 +28,7 @@ namespace Runes_Bio.Dbconnection
 			}
 			catch (Exception ex)
 			{
-				throw new Exception(ex.Message);
+                Console.WriteLine(ex.Message);
 			}
 			finally
 			{

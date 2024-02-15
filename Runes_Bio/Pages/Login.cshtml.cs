@@ -8,20 +8,23 @@ using Microsoft.AspNetCore.Http;
 
 namespace Runes_Bio.Pages
 {
-    public class LoginModel : PageModel
-    {
+	public class LoginModel : PageModel
+	{
 		DBCommands dbCMD = new DBCommands();
 		HashController hash = new HashController();
-        [BindProperty]
-        public string emailID { get; set; }
+		[BindProperty]
+		public string emailID { get; set; }
 		[BindProperty]
 		public string passID { get; set; }
 		public void OnGet()
 		{
-			string logged = HttpContext.Session.GetString("Logged");
-			if (logged == "Admin" || logged == "Employee")
+			string admin = HttpContext.Session.GetString("Admin");
+			string employee = HttpContext.Session.GetString("Employee");
+			if (!string.IsNullOrEmpty(admin) || !string.IsNullOrEmpty(employee))
 			{
-				HttpContext.Session.SetString("Logged", "");
+				HttpContext.Session.SetString("Admin", "");
+				HttpContext.Session.SetString("Employee", "");
+				HttpContext.Response.Redirect("/Index");
 			}
 		}
 
@@ -41,13 +44,21 @@ namespace Runes_Bio.Pages
 				{
 					if (roleId == 0)
 					{
-                        HttpContext.Session.SetString("Logged", "Admin");
-                    }
+						string name = dbCMD.LoggedName(emailID);
+						if (!string.IsNullOrEmpty(name))
+						{
+							HttpContext.Session.SetString("Admin", name + ".ad");
+						}
+					}
 					else
 					{
-                        HttpContext.Session.SetString("Logged", "Employee");
-                    }
-                    return RedirectToPage("/Index");
+						string name = dbCMD.LoggedName(emailID);
+						if (!string.IsNullOrEmpty(name))
+						{
+							HttpContext.Session.SetString("Employee", name + ".em");
+						}
+					}
+					return RedirectToPage("/Index");
 				}
 			}
 

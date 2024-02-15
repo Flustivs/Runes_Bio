@@ -13,8 +13,27 @@
 	<div class="nav">
 		@Html.AntiForgeryToken()
 		@{
-			string logged = Context.Session.GetString("Logged");
-			if (string.IsNullOrEmpty(logged))
+			string admin = Context.Session.GetString("Admin");
+			string employee = Context.Session.GetString("Employee");
+			string[] adminID = new string[1];
+			string[] employeeID = new string[1];
+			if (string.IsNullOrEmpty(admin))
+			{
+				adminID[0] = "";
+			}
+			else
+			{
+				adminID = admin.Split('.');
+			}
+			if (string.IsNullOrEmpty(employee))
+			{
+				employeeID[0] = "";
+			}
+			else
+			{
+				employeeID = employee.Split('.');
+			}
+			if (string.IsNullOrEmpty(adminID[0]) && string.IsNullOrEmpty(employeeID[0]))
 			{
 				<a class="active" href="Index">Hjem</a>
 				<a href="About">Om Os</a>
@@ -23,7 +42,7 @@
 					<a id="login" href="Login">Login</a>
 				</div>
 			}
-			if (logged == "Admin")
+			if (!string.IsNullOrEmpty(adminID[0]))
 			{
 				<a class="active" href="Index">Hjem</a>
 				<a href="About">Om Os</a>
@@ -34,7 +53,7 @@
 					<a id="logout" href="Login">LogOut</a>
 				</div>
 			}
-			if (logged == "Employee")
+			if (!string.IsNullOrEmpty(employeeID[0]))
 			{
 				<a class="active" href="Index">Hjem</a>
 				<a href="About">Om Os</a>

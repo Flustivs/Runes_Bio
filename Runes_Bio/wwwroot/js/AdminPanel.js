@@ -59,7 +59,7 @@
                 var inputPlayingTime = document.createElement('input');
                 inputPlayingTime.required;
                 inputPlayingTime.placeholder = 'Indtast filmens spilletid';
-                inputPlayingTime.name = 'moviePlaying';
+                inputPlayingTime.name = 'movie_Length';
                 inputPlayingTime.type = 'number';
                 inputPlayingTime.classList.add('movieInput');
                 inputPlayingTime.style.top = '40%';

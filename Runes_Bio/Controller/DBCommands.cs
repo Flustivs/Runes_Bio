@@ -1,11 +1,17 @@
-﻿namespace Runes_Bio.Controller
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Routing.Constraints;
+
+namespace Runes_Bio.Controller
 {
 	public class DBCommands
 	{
 		Dbconnection.Connection admindb = new Dbconnection.Connection();
-        Dbconnection.Connection empdb = new Dbconnection.Connection();
-        Dbconnection.Connection db = new Dbconnection.Connection();
-        internal bool EmailChecker(string input, byte num)
+		Dbconnection.Connection empdb = new Dbconnection.Connection();
+		Dbconnection.Connection db = new Dbconnection.Connection();
+
+		ISession session;
+		internal bool EmailChecker(string input, byte num)
 		{
 			List<string> admin = new List<string>();
 			List<string> employee = new List<string>();
@@ -71,5 +77,54 @@
 				return null;
 			}
 		}
-}
+		internal void Savemovie(string movie, DateTime date, int movie_Length, int theater)
+		{
+			string formattedDate = date.ToString("yyyy-MM-dd HH:mm:00");
+			string execMovie = $"EXEC InsertMovie @movieName = '{movie}', @playingTime = '{formattedDate}', @movieLength = {movie_Length}, @theater = {theater}";
+			db.DBConnection(execMovie);
+		}
+		internal List<string> GetMovie()
+		{
+			List<string> movie = new List<string>();
+			movie = db.DBConnection("SELECT movieName FROM Movie");
+			return movie;
+		}
+		internal void SaveTicketPrice(int normalPrice, int luxuryPrice)
+		{
+			DateTime date = DateTime.Now;
+			string adminName = session.GetString("Admin");
+		}
+		internal string LoggedName(string email)
+		{
+			List<string> adName = new List<string>();
+			List<string> emName = new List<string>();
+			try
+			{
+				adName = db.DBConnection($"SELECT fName FROM Administrator WHERE email = '{email}'");
+				if (!string.IsNullOrEmpty(adName[0]))
+				{
+					return adName[0];
+				}
+			}
+			catch (ArgumentOutOfRangeException e)
+			{
+				Console.WriteLine(e.Message);
+				return "";
+			}
+			try
+			{
+				emName = db.DBConnection($"SELECT fName FROM Employee WHERE email = '{email}'");
+				if (!string.IsNullOrEmpty(emName[0]))
+				{
+					return emName[0];
+				}
+				return "";
+			}
+			catch (ArgumentOutOfRangeException e)
+			{
+				Console.WriteLine(e.Message);
+				return "";
+			}
+		}
+	}
 }

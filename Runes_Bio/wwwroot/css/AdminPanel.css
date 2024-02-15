@@ -30,8 +30,17 @@
     visibility: hidden;
 }
 
+.movieSelect {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    z-index: 20;
+    max-height: 278px;
+    overflow-y: auto;
+}
+
 .movieList {
-    width: 300px;
+    width: 280px;
     height: 300px;
     position: fixed;
     left: 48%;
@@ -40,8 +49,6 @@
     border-radius: 40px;
     box-sizing: border-box;
     border-color: black;
-    overflow-y: auto;
-    max-height: 280px;
 }
 
 .movieInput{

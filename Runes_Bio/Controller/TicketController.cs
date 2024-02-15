@@ -17,7 +17,7 @@ namespace Runes_Bio.Controller
             // EXEC SaveTicket @timestamp, @email, @seat, @movieName, @ticketPrice
             foreach (string seat in seatArray)
 			{
-                string procedurecmd = $"EXEC SaveTicket @timestamp = {timestamp}, @email = {email}, @seat = {seat}, @movieName = {movieName}, @ticketPrice = {ticketPrice}";
+                string procedurecmd = $"EXEC SaveTicket @timestamp = '{timestamp}', @email = '{email}', @seat = '{seat}', @movieName = '{movieName}', @ticketPrice = {ticketPrice}";
 				_connection.DBConnection(procedurecmd);
             }
         }
