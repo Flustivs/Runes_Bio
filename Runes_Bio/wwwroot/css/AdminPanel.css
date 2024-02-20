@@ -32,19 +32,19 @@
 
 .movieSelect {
     position: fixed;
-    top: 20%;
-    left: 50%;
+    top: 18%;
+    left: 49%;
     z-index: 20;
-    max-height: 278px;
+    max-height: 228px;
     overflow-y: auto;
 }
 
 .movieList {
     width: 280px;
-    height: 300px;
+    height: 250px;
     position: fixed;
     left: 48%;
-    top: 20%;
+    top: 15%;
     background-color: darkgray;
     border-radius: 40px;
     box-sizing: border-box;
@@ -55,7 +55,7 @@
     height: 30px;
     position: fixed;
     left: 12%;
-    top: 30%;
+    top: 25%;
     background-color: darkgray;
 }
 

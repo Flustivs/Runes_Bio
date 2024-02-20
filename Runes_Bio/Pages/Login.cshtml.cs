@@ -44,25 +44,23 @@ namespace Runes_Bio.Pages
 				{
 					if (roleId == 0)
 					{
-						string name = dbCMD.LoggedName(emailID);
-						if (!string.IsNullOrEmpty(name))
+						string adminID = dbCMD.LoggedID(emailID);
+						if (!string.IsNullOrEmpty(adminID))
 						{
-							HttpContext.Session.SetString("Admin", name + ".ad");
+							HttpContext.Session.SetString("Admin", adminID);
 						}
 					}
 					else
 					{
-						string name = dbCMD.LoggedName(emailID);
-						if (!string.IsNullOrEmpty(name))
+						string employeeID = dbCMD.LoggedID(emailID);
+						if (!string.IsNullOrEmpty(employeeID))
 						{
-							HttpContext.Session.SetString("Employee", name + ".em");
+							HttpContext.Session.SetString("Employee", employeeID);
 						}
 					}
 					return RedirectToPage("/Index");
 				}
 			}
-
-			var errorResult = new { Success = false, Message = "Ikke gyldigt LogIn." };
 			return RedirectToPage("/Login");
 		}
 

@@ -16,12 +16,21 @@ namespace Runes_Bio.Pages
         }
         public void OnGet()
         {
-            string logged = HttpContext.Session.GetString("Logged");
-            if (string.IsNullOrEmpty(logged))
-            {
-                HttpContext.Response.Redirect("/Index");
-            }
-        }
+			string admin = HttpContext.Session.GetString("Admin");
+			string employee = HttpContext.Session.GetString("Employee");
+			if (!string.IsNullOrEmpty(admin))
+			{
+				HttpContext.Session.SetString("Logged", admin + ".ad");
+			}
+			if (!string.IsNullOrEmpty(employee))
+			{
+				HttpContext.Session.SetString("Logged", employee + ".em");
+			}
+			if (string.IsNullOrEmpty(admin) && string.IsNullOrEmpty(employee))
+			{
+				HttpContext.Response.Redirect("/Index");
+			}
+		}
         public string GetQuestion(byte num)
         {
             List<string> questions = new List<string>();

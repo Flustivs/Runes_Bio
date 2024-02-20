@@ -4,9 +4,10 @@
     setTimeout(function () {
         var flybox = document.getElementById('FlyInBox');
         var olddiv = document.getElementById('FlyBoxText');
-        var preForm = document.getElementById('allForm');
+        var defaultForm = document.getElementById('defaultForm');
+        var movieForm = document.getElementById('movieForm');
 
-        DeleteFormTag(olddiv, preForm, num);
+        DeleteFormTag(olddiv, defaultForm, num);
 
         var div = document.createElement('div');
         div.id = 'FlyBoxText';
@@ -37,10 +38,10 @@
                 text2.innerHTML = 'Prisen for luksus billet: ' + luxuryPrice;
                 text2.style = 'position: fixed; top: 40%; left: 15%;';
 
-                preForm.appendChild(inputfield1);
-                preForm.appendChild(inputfield2);
-                preForm.appendChild(text1);
-                preForm.appendChild(text2);
+                defaultForm.appendChild(inputfield1);
+                defaultForm.appendChild(inputfield2);
+                defaultForm.appendChild(text1);
+                defaultForm.appendChild(text2);
                 flybox.appendChild(div);
                 break;
             case 2:
@@ -62,7 +63,7 @@
                 inputPlayingTime.name = 'movie_Length';
                 inputPlayingTime.type = 'number';
                 inputPlayingTime.classList.add('movieInput');
-                inputPlayingTime.style.top = '40%';
+                inputPlayingTime.style.top = '35%';
                 inputPlayingTime.required = true;
 
                 var inputDate = document.createElement('input');
@@ -71,7 +72,7 @@
                 inputDate.name = 'date';
                 inputDate.type = 'datetime-local';
                 inputDate.classList.add('movieInput');
-                inputDate.style.top = '50%';
+                inputDate.style.top = '45%';
                 inputDate.required = true;
 
                 var inputTheater = document.createElement('input');
@@ -80,7 +81,7 @@
                 inputTheater.name = 'theater';
                 inputTheater.type = 'number';
                 inputTheater.classList.add('movieInput');
-                inputTheater.style.top = '60%';
+                inputTheater.style.top = '55%';
                 inputTheater.required = true;
 
                 div.innerHTML = 'Hvilke film vil du gerne tilføje / fjerne';
@@ -91,14 +92,17 @@
                 addButton.style.visibility = 'visible';
                 addButton.style.left = '20%';
 
+                var removeButton = document.getElementById('removeButton');
+                removeButton.style.visibility = 'visible';
+                removeButton.style.left = '65%';
                 var movieList = document.getElementById('movieSelect');
 
                 movieBox.appendChild(movieList);
-                preForm.appendChild(movieBox);
-                preForm.appendChild(inputName);
-                preForm.appendChild(inputPlayingTime);
-                preForm.appendChild(inputDate);
-                preForm.appendChild(inputTheater);
+                movieForm.appendChild(movieBox);
+                defaultForm.appendChild(inputName);
+                defaultForm.appendChild(inputPlayingTime);
+                defaultForm.appendChild(inputDate);
+                defaultForm.appendChild(inputTheater);
                 flybox.appendChild(div);
                 break;
             case 3:
@@ -111,48 +115,58 @@
     }, 20)
 }
 
-function DeleteFormTag(olddiv, preForm, num) {
+function DeleteFormTag(olddiv, defaultForm, num) {
     var confirmButton = document.getElementById('ConfirmButton');
     var addButton = document.getElementById('addButton');
     var movieSelect = document.getElementById('movieSelect');
+    var removeButton = document.getElementById('removeButton');
+    var movieBox = document.getElementsByClassName('movieList');
+    var movieForm = document.getElementById('movieForm');
 
+    if (movieSelect != null) {
+        movieForm.appendChild(movieSelect);
+    }
     if (num == 2) {
         confirmButton.style.visibility = 'hidden';
         addButton.style.visibility = 'visible';
         movieSelect.style.visibility = 'visible';
+        removeButton.style.visibility = 'visible';
     }
     else {
+        if (movieBox)
+        for (var i = 0; i < movieBox.length;){
+            movieBox[i].remove();
+        }
         confirmButton.style.visibility = 'visible';
         addButton.style.visibility = 'hidden';
-        movieSelect.style.visibility = 'hidden';
+        if (movieSelect != null) {
+            movieSelect.style.visibility = 'hidden';
+        }
+        removeButton.style.visibility = 'hidden';
     }
 
     if (olddiv != null) {
         olddiv.remove();
 
-        var oldMovieBox = document.getElementsByClassName('movieList');
-        if (oldMovieBox[0] != null) {
-            oldMovieBox[0].remove();
+        if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'P') {
+            defaultForm.removeChild(defaultForm.lastChild);
+            defaultForm.removeChild(defaultForm.lastChild);
         }
-        if (preForm.lastChild && preForm.lastChild.tagName === 'P') {
-            preForm.removeChild(preForm.lastChild);
-            preForm.removeChild(preForm.lastChild);
+        if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'INPUT') {
+            defaultForm.removeChild(defaultForm.lastChild);
+            defaultForm.removeChild(defaultForm.lastChild);
         }
-        if (preForm.lastChild && preForm.lastChild.tagName === 'INPUT') {
-            preForm.removeChild(preForm.lastChild);
-            preForm.removeChild(preForm.lastChild);
-        }
-        if (preForm.lastChild && preForm.lastChild.tagName === 'INPUT') {
-            preForm.removeChild(preForm.lastChild);
-            preForm.removeChild(preForm.lastChild);
-            if (preForm.lastChild && preForm.lastChild.tagName === 'INPUT') {
-                preForm.removeChild(preForm.lastChild);
-                preForm.removeChild(preForm.lastChild);
+        if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'INPUT') {
+            defaultForm.removeChild(defaultForm.lastChild);
+            defaultForm.removeChild(defaultForm.lastChild);
+            if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'INPUT') {
+                defaultForm.removeChild(defaultForm.lastChild);
+                defaultForm.removeChild(defaultForm.lastChild);
             }
         }
-        if (preForm.lastChild && preForm.lastChild.tagName === 'P') {
-            preForm.removeChild(preForm.lastChild);
-            preForm.removeChild(preForm.lastChild);
+        if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'P') {
+            defaultForm.removeChild(defaultForm.lastChild);
+            defaultForm.removeChild(defaultForm.lastChild);
         }
     }
 }

@@ -20,6 +20,10 @@ namespace Runes_Bio.Pages
 			{
 				HttpContext.Session.SetString("Logged", employee + ".em");
 			}
+            if (string.IsNullOrEmpty(admin) && string.IsNullOrEmpty(employee))
+            {
+                HttpContext.Response.Redirect("/Index");
+            }
 		}
         [BindProperty]
         public string emailID { get; set; }

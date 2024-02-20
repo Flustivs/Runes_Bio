@@ -21,7 +21,7 @@
 			{
 				adminID[0] = "";
 			}
-			else
+			if (!string.IsNullOrEmpty(admin))
 			{
 				adminID = admin.Split('.');
 			}
@@ -29,7 +29,7 @@
 			{
 				employeeID[0] = "";
 			}
-			else
+			if (!string.IsNullOrEmpty(employee))
 			{
 				employeeID = employee.Split('.');
 			}
