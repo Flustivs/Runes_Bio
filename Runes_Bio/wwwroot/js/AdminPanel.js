@@ -15,18 +15,20 @@
         switch (num) {
             case 1:
                 box.classList.add('flyin');
-                div.innerHTML = 'Hvilke priser vil du gerne ændre bare skriv den ønskede pris udfra den billet';
+                div.innerHTML = 'Skriv den ønskede pris udfra den billet';
 
                 var inputfield1 = document.createElement('input');
                 inputfield1.type = 'number';
                 inputfield1.placeholder = '89.95';
                 inputfield1.name = 'Inputfield1';
                 inputfield1.style = 'position: fixed; top: 30%; left: 55%;';
+                inputfield1.required = true;
 
                 var inputfield2 = document.createElement('input');
                 inputfield2.placeholder = '89.95';
                 inputfield2.name = 'Inputfield2';
                 inputfield2.style = 'position: fixed; top: 40%; left: 55%;';
+                inputfield2.required = true;
 
                 var normalPrice = document.getElementById('normalPrice').value;
                 var text1 = document.createElement('p');
@@ -107,6 +109,14 @@
                 break;
             case 3:
                 box.classList.add('flyin');
+
+                div.innerHTML = 'Tryk på de personer der skal fjernes helt fra biografen';
+
+                var employeeList = document.createElement('div');
+                employeeList.classList.add('movieList');
+                employeeList.style.left = '27%';
+
+                defaultForm.appendChild(employeeList);
                 flybox.appendChild(div);
                 break;
             default:
@@ -116,12 +126,18 @@
 }
 
 function DeleteFormTag(olddiv, defaultForm, num) {
-    var confirmButton = document.getElementById('ConfirmButton');
+    var confirmButton = document.getElementById('confirmButton');
     var addButton = document.getElementById('addButton');
     var movieSelect = document.getElementById('movieSelect');
     var removeButton = document.getElementById('removeButton');
     var movieBox = document.getElementsByClassName('movieList');
     var movieForm = document.getElementById('movieForm');
+    var employeeSelect = document.getElementById('employeeSelect');
+    var removeEmpButton = document.getElementById('removeEmp');
+
+    for (var i = 0; i < movieBox.length;) {
+        movieBox[i].remove();
+    }
 
     if (movieSelect != null) {
         movieForm.appendChild(movieSelect);
@@ -131,43 +147,34 @@ function DeleteFormTag(olddiv, defaultForm, num) {
         addButton.style.visibility = 'visible';
         movieSelect.style.visibility = 'visible';
         removeButton.style.visibility = 'visible';
+        removeEmpButton.style.visibility = 'hidden';
+        employeeSelect.style.visibility = 'hidden';
     }
-    else {
-        if (movieBox)
-        for (var i = 0; i < movieBox.length;){
-            movieBox[i].remove();
-        }
+    if (num == 1 || num == 3) {
         confirmButton.style.visibility = 'visible';
         addButton.style.visibility = 'hidden';
         if (movieSelect != null) {
             movieSelect.style.visibility = 'hidden';
         }
         removeButton.style.visibility = 'hidden';
+        employeeSelect.style.visibility = 'hidden';
+        if (num == 3) {
+            confirmButton.style.visibility = 'hidden';
+            removeEmpButton.style.visibility = 'visible';
+            employeeSelect.style.visibility = 'visible';
+        }
     }
 
     if (olddiv != null) {
         olddiv.remove();
 
-        if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'P') {
-            defaultForm.removeChild(defaultForm.lastChild);
-            defaultForm.removeChild(defaultForm.lastChild);
-        }
-        if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'INPUT') {
-            defaultForm.removeChild(defaultForm.lastChild);
-            defaultForm.removeChild(defaultForm.lastChild);
-        }
-        if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'INPUT') {
-            defaultForm.removeChild(defaultForm.lastChild);
-            defaultForm.removeChild(defaultForm.lastChild);
-            if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'INPUT') {
-                defaultForm.removeChild(defaultForm.lastChild);
-                defaultForm.removeChild(defaultForm.lastChild);
+        var children = Array.from(defaultForm.children);
+
+        children.forEach(function (child) {
+            if (child.tagName == 'P' || child.tagName == 'INPUT') {
+                defaultForm.removeChild(child);
             }
-        }
-        if (defaultForm.lastChild && defaultForm.lastChild.tagName === 'P') {
-            defaultForm.removeChild(defaultForm.lastChild);
-            defaultForm.removeChild(defaultForm.lastChild);
-        }
+        })
     }
 }
 

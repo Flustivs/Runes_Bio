@@ -26,15 +26,18 @@ namespace Runes_Bio.Pages
         private readonly Dbconnection.Connection _connection = new Dbconnection.Connection();
         public int luxuryTic;
         public int normalTic;
-        /// <summary>
-        /// ticketPriceID = 1 thats normal ticket
-        /// ticketPriceID = 2 thats luxury ticket
-        /// </summary>
         public void OnGet()
         {
            
         }
-
+        /// <summary>
+        /// ticketPriceID = 1 thats normal ticket
+        /// ticketPriceID = 2 thats luxury ticket
+        /// </summary>
+        /// <param name="seat"></param>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <param name="ticketPrice"></param>
         public void OnPost(string seat, string name, string email, string ticketPrice)
         {
             luxuryTic = int.Parse(_connection.DBConnection("SELECT ticketPrice FROM TicketPrice WHERE ticketPriceID = 2")[0]);

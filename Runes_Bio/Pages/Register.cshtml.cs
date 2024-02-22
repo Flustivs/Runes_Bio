@@ -11,16 +11,11 @@ namespace Runes_Bio.Pages
         public void OnGet()
         {
 			string admin = HttpContext.Session.GetString("Admin");
-			string employee = HttpContext.Session.GetString("Employee");
 			if (!string.IsNullOrEmpty(admin))
 			{
 				HttpContext.Session.SetString("Logged", admin + ".ad");
 			}
-			if (!string.IsNullOrEmpty(employee))
-			{
-				HttpContext.Session.SetString("Logged", employee + ".em");
-			}
-            if (string.IsNullOrEmpty(admin) && string.IsNullOrEmpty(employee))
+            if (string.IsNullOrEmpty(admin))
             {
                 HttpContext.Response.Redirect("/Index");
             }
@@ -41,7 +36,7 @@ namespace Runes_Bio.Pages
             {
                 string hashedPass = hash.Hash(passID);
                 create.Create(nameID, emailID, hashedPass);
-                return RedirectToPage("/Login");
+                return Page();
             }
             return Page();
         }

@@ -31,7 +31,16 @@
     <div id="FlyInBox" class="popUpBox">
         <button type="button" class="closePopBox" onclick="ClosePopUp()">X</button>
         <form method="post" id="defaultForm">
-            <button asp-page-handler="TicketPrice" class="confirmButton" type="submit" id="ConfirmButton">Bekræft</button>
+            @Html.AntiForgeryToken()
+            <br />
+            <ul name="employeeSelect" id="employeeSelect" class="movieSelect" style="left: 28%">
+                @foreach (string option in Model.GetEmployee())
+                {
+                    <li><input type="checkbox" name="selectedEmployee" id="@option" value="@option"><label for="@option">@option</label></li>
+                }
+            </ul>
+            <button asp-page-handler="RemoveEmployee" class="confirmButton" type="submit" id="removeEmp" style="visibility: hidden;">Fjern</button>
+            <button asp-page-handler="TicketPrice" class="confirmButton" type="submit" id="confirmButton">Bekræft</button>
             <button asp-page-handler="AddMovie" class="confirmButton" type="submit" style="visibility: hidden;" id="addButton">Tilføj</button>
         </form>
         <form method="post" id="movieForm">

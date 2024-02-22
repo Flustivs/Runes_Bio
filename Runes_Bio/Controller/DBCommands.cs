@@ -1,4 +1,7 @@
-﻿namespace Runes_Bio.Controller
+﻿using System.Runtime.Serialization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Runes_Bio.Controller
 {
     public class DBCommands
     {
@@ -33,7 +36,7 @@
                     dbCmd = "SELECT email FROM Employee WHERE employeeID = ";
                     break;
             }
-            numAdmin += numEmployee;
+            numAdmin += numEmployee + 5;
             for (int i = 0; i <= numAdmin; i++)
             {
                 passList = db.DBConnection(dbCmd + $"{i}");
@@ -52,6 +55,37 @@
                 }
             }
             return false;
+        }
+        internal List<string> GetEmployee()
+        {
+            return db.DBConnection("SELECT email FROM Employee");
+        }
+        internal void RemoveEmployee(string[] selectedEmployee)
+        {
+            foreach (string employee in selectedEmployee)
+            {
+                db.DBConnection($"DELETE FROM Employee WHERE email = '{employee}'");
+            }
+        }
+        internal int GetNormalPrice()
+        {
+            return int.Parse(db.DBConnection("SELECT ticketPrice FROM TicketPrice WHERE ticketPriceID = 1")[0]);
+        }
+        internal int GetLuxuryPrice()
+        {
+            return int.Parse(admindb.DBConnection("SELECT ticketPrice FROM TicketPrice WHERE ticketPriceID = 2")[0]);
+        }
+        internal void NormalPriceChanger(float price, string adminID)
+        {
+            DateTime dateTime = DateTime.Now;
+            string time = dateTime.ToString("yyyy-MM-dd HH:mm:00");
+            db.DBConnection($"UPDATE TicketPrice SET ticketPrice = {price}, adminID = {adminID}, changeTimeStamp = '{time}' WHERE ticketPriceID = 1");
+        }
+        internal void LuxuryPriceChanger(float price, string adminID)
+        {
+            DateTime dateTime = DateTime.Now;
+            string time = dateTime.ToString("yyyy-MM-dd HH:mm:00");
+            db.DBConnection($"UPDATE TicketPrice SET ticketPrice = {price}, adminID = {adminID}, changeTimeStamp = '{time}' WHERE ticketPriceID = 2");
         }
         internal string GetPass(byte num, string email)
         {
@@ -73,12 +107,12 @@
                 return null;
             }
         }
-        internal void Savemovie(string movie, DateTime date, int movie_Length, int theater, string? adminEmail)
+        internal void Savemovie(string movie, DateTime date, int movie_Length, int theater, string? adminID)
         {
             string formattedDate = date.ToString("yyyy-MM-dd HH:mm:00");
-            if (adminEmail != null)
+            if (adminID != null)
             {
-                string execMovie = $"EXEC InsertMovie @movieName = '{movie}', @playingTime = '{formattedDate}', @movieLength = {movie_Length}, @theater = {theater}, @adminEmail = '{adminEmail}'";
+                string execMovie = $"EXEC InsertMovie @movieName = '{movie}', @playingTime = '{formattedDate}', @movieLength = {movie_Length}, @theater = {theater}, @adminID = '{adminID}'";
                 db.DBConnection(execMovie);
             }
 
@@ -106,33 +140,23 @@
         {
             List<string> adID = new List<string>();
             List<string> emID = new List<string>();
-            try
+            adID = admindb.DBConnection($"SELECT adminID FROM Administrator WHERE email = '{email}'");
+            emID = empdb.DBConnection($"SELECT employeeID FROM Employee WHERE email = '{email}'");
+            if (adID[0] != null)
             {
-                adID = db.DBConnection($"SELECT adminID FROM Administrator WHERE email = '{email}'");
                 if (!string.IsNullOrEmpty(adID[0]))
                 {
                     return adID[0];
                 }
             }
-            catch (ArgumentOutOfRangeException e)
+            if (emID[0] != null)
             {
-                Console.WriteLine(e.Message);
-                return "";
-            }
-            try
-            {
-                emID = db.DBConnection($"SELECT employeeID FROM Employee WHERE email = '{email}'");
                 if (!string.IsNullOrEmpty(emID[0]))
                 {
                     return emID[0];
                 }
-                return "";
             }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine(e.Message);
-                return "";
-            }
+            return "";
         }
 
     }
