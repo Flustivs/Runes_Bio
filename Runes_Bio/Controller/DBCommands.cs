@@ -10,12 +10,19 @@ namespace Runes_Bio.Controller
         Dbconnection.Connection db = new Dbconnection.Connection();
 
         ISession session;
+        /// <summary>
+        /// Takes the highest id from both the employees and admins and from there finds out if the email exits in either of those,
+        /// and if it does it returns true, else False
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
         internal bool EmailChecker(string input, byte num)
         {
             List<string> admin = new List<string>();
             List<string> employee = new List<string>();
-            admin = admindb.DBConnection("SELECT COUNT(adminID) FROM Administrator");
-            employee = empdb.DBConnection("SELECT COUNT(employeeID) FROM employee");
+            admin = admindb.DBConnection("SELECT TOP 1 adminID FROM Administrator ORDER BY adminID DESC");
+            employee = empdb.DBConnection("SELECT TOP 1 employeeID FROM Employee ORDER BY employeeID DESC");
             int numEmployee = int.Parse(employee[0]);
             int numAdmin = int.Parse(admin[0]);
             List<string> passList = new List<string>();
@@ -36,7 +43,7 @@ namespace Runes_Bio.Controller
                     dbCmd = "SELECT email FROM Employee WHERE employeeID = ";
                     break;
             }
-            numAdmin += numEmployee + 5;
+            numAdmin += numEmployee + 1;
             for (int i = 0; i <= numAdmin; i++)
             {
                 passList = db.DBConnection(dbCmd + $"{i}");
@@ -75,18 +82,34 @@ namespace Runes_Bio.Controller
         {
             return int.Parse(admindb.DBConnection("SELECT ticketPrice FROM TicketPrice WHERE ticketPriceID = 2")[0]);
         }
+        /// <summary>
+        /// Saves the price of the normal ticket
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="adminID"></param>
         internal void NormalPriceChanger(float price, string adminID)
         {
             DateTime dateTime = DateTime.Now;
             string time = dateTime.ToString("yyyy-MM-dd HH:mm:00");
-            db.DBConnection($"UPDATE TicketPrice SET ticketPrice = {price}, adminID = {adminID}, changeTimeStamp = '{time}' WHERE ticketPriceID = 1");
+            admindb.DBConnection($"UPDATE TicketPrice SET ticketPrice = {price}, adminID = {adminID}, changeTimeStamp = '{time}' WHERE ticketPriceID = 1");
         }
+        /// <summary>
+        /// Saves the price of the luxury ticket
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="adminID"></param>
         internal void LuxuryPriceChanger(float price, string adminID)
         {
             DateTime dateTime = DateTime.Now;
             string time = dateTime.ToString("yyyy-MM-dd HH:mm:00");
-            db.DBConnection($"UPDATE TicketPrice SET ticketPrice = {price}, adminID = {adminID}, changeTimeStamp = '{time}' WHERE ticketPriceID = 2");
+            empdb.DBConnection($"UPDATE TicketPrice SET ticketPrice = {price}, adminID = {adminID}, changeTimeStamp = '{time}' WHERE ticketPriceID = 2");
         }
+        /// <summary>
+        /// Gets the hashed password from the database, using their email to find it
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
         internal string GetPass(byte num, string email)
         {
             List<string> pass = new List<string>();
@@ -107,6 +130,14 @@ namespace Runes_Bio.Controller
                 return null;
             }
         }
+        /// <summary>
+        /// Saves a movie with using the stored procedure "InsertMovie"
+        /// </summary>
+        /// <param name="movie"></param>
+        /// <param name="date"></param>
+        /// <param name="movie_Length"></param>
+        /// <param name="theater"></param>
+        /// <param name="adminID"></param>
         internal void Savemovie(string movie, DateTime date, int movie_Length, int theater, string? adminID)
         {
             string formattedDate = date.ToString("yyyy-MM-dd HH:mm:00");
@@ -117,6 +148,10 @@ namespace Runes_Bio.Controller
             }
 
         }
+        /// <summary>
+        /// Deletes the movies that are in the string array
+        /// </summary>
+        /// <param name="movies"></param>
         internal void DeleteMovie(string[] movies)
         {
             foreach (string movie in movies)
@@ -125,36 +160,52 @@ namespace Runes_Bio.Controller
                 db.DBConnection($"DELETE FROM Movie WHERE movieName = '{movie}'");
             }
         }
+        /// <summary>
+        /// Gets a list of movies
+        /// </summary>
+        /// <returns></returns>
         internal List<string> GetMovie()
         {
             List<string> movie = new List<string>();
             movie = db.DBConnection("SELECT movieName FROM Movie");
             return movie;
         }
-        internal void SaveTicketPrice(int normalPrice, int luxuryPrice)
-        {
-            DateTime date = DateTime.Now;
-            string adminName = session.GetString("Admin");
-        }
+        //internal void SaveTicketPrice(int normalPrice, int luxuryPrice)
+        //{
+        //    DateTime date = DateTime.Now;
+        //    string adminName = session.GetString("Admin");
+        //}
+
+        /// <summary>
+        /// Are checking if the person exist in the database,
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         internal string LoggedID(string email)
         {
             List<string> adID = new List<string>();
             List<string> emID = new List<string>();
             adID = admindb.DBConnection($"SELECT adminID FROM Administrator WHERE email = '{email}'");
             emID = empdb.DBConnection($"SELECT employeeID FROM Employee WHERE email = '{email}'");
-            if (adID[0] != null)
+            try
             {
                 if (!string.IsNullOrEmpty(adID[0]))
                 {
                     return adID[0];
                 }
             }
-            if (emID[0] != null)
+            catch (ArgumentOutOfRangeException ad)
+            {
+            }
+            try
             {
                 if (!string.IsNullOrEmpty(emID[0]))
                 {
                     return emID[0];
                 }
+            }
+            catch (ArgumentOutOfRangeException em)
+            {
             }
             return "";
         }

@@ -1,27 +1,21 @@
 ﻿@page
 @model Runes_Bio.Pages.MovieModel
 @{
-	Layout = "_Layout";
+    Layout = "_Layout";
 }
 <head>
-	<link rel="stylesheet" href="/css/site.css">
-	<link rel="stylesheet" href="/css/Movie.css">
-	<script src="/js/site.js"></script>
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="/css/Movie.css">
+    <script src="/js/site.js"></script>
 </head>
 <body>
-	<script src="/_framework/aspnetcore-browser-refresh.js"></script>
-	<div class="latestMovieBox" style="width: 250px;height: 600px;">
-		<p class="center_Small_Text">Nyeste Film</p>
-	</div>
-	<div class="latestMovieBox" style="float: right;">
-		<p class="center_Small_Text">Populære Film</p>
-		@foreach(string thing in Model.item())
-			{
-				Model.num += 1;
-				<br />
-				<br />
-				<a href="TicketPage" onclick="SaveMovie(@thing)">@thing</a>
-			}
-
-	</div>
+    <form method="post">
+        <div class="latestMovieBox">
+            <p class="center_Small_Text">Alle Film</p>
+                @foreach (string movie in Model.item())
+                {
+                    <button asp-page-handler="MoviePick" name="movieName" value="@movie" class="textButton">@movie</button>
+                }
+        </div>
+    </form>
 </body>

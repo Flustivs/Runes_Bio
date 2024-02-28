@@ -13,6 +13,7 @@
     <img src="/Pictures/screen.png" />
 </div>
 <div>
+    <input id="reservedSeats" value="@Model.UsedSeat()" type="hidden" />
     @{
         for (int i = 0; i < 6; i++)
         {
@@ -28,9 +29,12 @@
         }
     }
     <div class="TermsBox">
+        <p>
+            Valgte film er @Model.movie
+        </p>
         <br />
         <form method="post" asp-page="/TicketPgae">
-            <input id="inputSeat" name="seat" type="hidden" />
+            <input id="inputSeat" name="seats" type="hidden" />
             <input id="inputPrice" name="ticketPrice" type="hidden" />
             <a style="top: 70%; position: fixed; left: 74%;" href="/terms & conditions.pdf" download="">vilkår og betingelser</a>
             <p style="position: fixed; top: 74%; left: 70%">

@@ -2,7 +2,7 @@
     margin-top: 40px;
     margin-right: 10px;
     text-align: center;
-    float: left;
+    position: fixed;
     width: 1050px;
     height: 600px;
     background-color: white;
@@ -11,4 +11,15 @@
     box-sizing: border-box;
     outline: 3px solid black;
     display: block;
+    left: 15%;
+}
+
+.textButton {
+    left: 3%;
+    border: none;
+    background-color: inherit;
+    padding: 14px 4px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
 }

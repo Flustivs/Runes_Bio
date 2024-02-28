@@ -50,7 +50,7 @@ namespace Runes_Bio.Pages
             }
             if (!(Inputfield2 < 98) && !(Inputfield2 > 250))
             {
-                _cmd.LuxuryPriceChanger(Inputfield1, HttpContext.Session.GetString("Admin"));
+                _cmd.LuxuryPriceChanger(Inputfield2, HttpContext.Session.GetString("Admin"));
             }
             return RedirectToPage("/AdminPanel");
         }
