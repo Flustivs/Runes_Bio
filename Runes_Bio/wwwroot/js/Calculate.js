@@ -12,7 +12,7 @@
             congrats.style.opacity = '0';
             congrats.style.visibility = 'hidden';
             setTimeout(function () {
-                document.location.href = '/ToDo';
+                document.location.href = '/ToDo?won=won&task=Money-Count';
             }, 500);
         }, 2000)
     }
@@ -23,6 +23,9 @@
         setTimeout(function () {
             failed.style.opacity = '0';
             failed.style.visibility = 'hidden';
+            setTimeout(function () {
+                document.location.href = '/ToDo?won=lost&task=Money-Count';
+            }, 500);
         }, 2000)
     }
 }

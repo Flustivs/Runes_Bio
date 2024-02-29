@@ -14,9 +14,35 @@
 </head>
 <body>
 	<div class="centerBox">
-		<button class="button" id="ButtonTrash" style="top: 30%" onclick="PickUpTrash()">Samle skrald op</button>
-		<button class="button" id="ButtonCalTicket" style="top: 50%" onclick="CalculateTicket()">Udregn billeter</button>
-		<button class="button" id="ButtonPopCorn" style="top: 70%" onclick="CatchPopCorn()">Fang popcorn</button>
+		<input asp-for="trashInput" type="hidden" id="trashInput" />
+		<input asp-for="moneyInput" type="hidden" id="moneyInput" />
+		<input asp-for="popcornInput" type="hidden" id="popcornInput" />
+		<input asp-for="dateInput" type="hidden" id="dateInput"/>
+
+		<div class="todoBox">
+			<p style="font-size: 28px; color: white;">Skrald</p>
+			<p class="text" style="left: 12%">Til rådighed</p>
+			<p class="text" style="top:43%; left: 11%;">Antal gange<br />opgaven er udført</p>
+			<div class="littleBox" id="availableTrash"></div>
+			<div class="littleBox" style="background-color: white; border-color: black; bo;top: 43%; font-size: 28px; text-align: center;">@Model.GetAmount(0)</div>
+			<button class="button" id="ButtonTrash" onclick="PickUpTrash()">Samle skrald op</button>
+		</div>
+		<div class="todoBox" style="left: 40%">
+			<p style="font-size: 28px; color: white;">Matematik</p>
+			<p class="text" style="left: 42%">Til rådighed</p>
+			<p class="text" style="top:43%; left: 41%;">Antal gange <br />opgaven er udført</p>
+			<div class="littleBox" style="left: 54%" id="availableMoney"></div>
+			<div class="littleBox" style="background-color: white; border-color: black; left: 54%; top: 43%; font-size: 28px; text-align: center;">@Model.GetAmount(1)</div>
+			<button class="button" id="ButtonCalTicket" onclick="CalculateTicket()">Udregn billeter</button>
+		</div>
+		<div class="todoBox" style="left: 70%">
+			<p style="font-size: 28px; color: white;">PopCorn</p>
+			<p class="text" style="left: 72%">Til rådighed</p>
+			<p class="text" style="top:43%; left: 71%;">Antal gange<br />opgaven er udført</p>
+			<div class="littleBox" style="left: 84%" id="availablePopcorn"></div>
+			<div class="littleBox" style="background-color: white; border-color: black; left: 84%; top: 43%; font-size: 28px; text-align: center;">@Model.GetAmount(2)</div>
+			<button class="button" id="ButtonPopCorn" onclick="CatchPopCorn()">Fang popcorn</button>
+		</div>
 	</div>
 </body>
 </html>

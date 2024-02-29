@@ -131,7 +131,7 @@ namespace Runes_Bio.Controller
             }
         }
         /// <summary>
-        /// Saves a movie with using the stored procedure "InsertMovie"
+        /// Saves a movie using the stored procedure "InsertMovie"
         /// </summary>
         /// <param name="movie"></param>
         /// <param name="date"></param>
@@ -177,7 +177,7 @@ namespace Runes_Bio.Controller
         //}
 
         /// <summary>
-        /// Are checking if the person exist in the database,
+        /// Checking if the person exist in the database,
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
@@ -209,6 +209,97 @@ namespace Runes_Bio.Controller
             }
             return "";
         }
+        /// <summary>
+        /// Uses an UPDATE statement to change what time the task was last completed, which admin / employee last completed it,
+        /// and how many times that task have been completed in total
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="num"></param>
+        /// <param name="assignment"></param>
+        internal void UpdateAssignment(string person, int num, string assignment)
+        {
+            DateTime time = DateTime.Now;
+            string formattedTime = time.ToString("yyyy-MM-dd HH:mm:ss");
+            int amount = 0;
+			List<string> amountDone = db.DBConnection("SELECT amountDone FROM Assignment");
+            if (amountDone != null)
+            {
+                switch (assignment)
+                {
+                    case "Trash-Pick-Up":
+						amount = int.Parse(amountDone[0]);
+						break;
+                    case "Money-Count":
+						amount = int.Parse(amountDone[1]);
+						break;
+                    case "Catch-PopCorn":
+						amount = int.Parse(amountDone[2]);
+						break;
+				}
+				if (num == 0)
+				{
+					amount++;
+					switch (assignment)
+					{
+						case "Trash-Pick-Up":
+							db.DBConnection($"UPDATE Assignment SET adminID = {person}, employeeID = null, available = '{formattedTime}', amountDone = {amount} WHERE assigmentName = '{assignment}'");
+							break;
+						case "Money-Count":
+							db.DBConnection($"UPDATE Assignment SET adminID = {person}, employeeID = null, available = '{formattedTime}', amountDone = {amount} WHERE assigmentName = '{assignment}'");
+							break;
+						case "Catch-PopCorn":
+							db.DBConnection($"UPDATE Assignment SET adminID = {person}, employeeID = null, available = '{formattedTime}', amountDone = {amount} WHERE assigmentName = '{assignment}'");
+							break;
+					}
+				}
+				if (num == 1)
+				{
+					amount++;
+					switch (assignment)
+					{
+						case "Trash-Pick-Up":
+							db.DBConnection($"UPDATE Assignment SET employeeID = {person}, adminID = null, available = '{formattedTime}', amountDone = {amount} WHERE assigmentName = '{assignment}'");
+							break;
+						case "Money-Count":
+							db.DBConnection($"UPDATE Assignment SET employeeID = {person}, adminID = null, available = '{formattedTime}', amountDone = {amount} WHERE assigmentName = '{assignment}'");
+							break;
+						case "Catch-PopCorn":
+							db.DBConnection($"UPDATE Assignment SET employeeID = {person}, adminID = null, available = '{formattedTime}', amountDone = {amount} WHERE assigmentName = '{assignment}'");
+							break;
+					}
+				}
+			}
+        }
+		/// <summary>
+		/// Gets total amount of how many times a task have been completed <para />
+		/// 0 = trash assignment <para />
+		/// 1 = money assignment <para />
+		/// 2 = popcorn assignment
+		/// </summary>
+		/// <param name="num"></param>
+		/// <returns></returns>
+		public int GetAmount(int num)
+        {
+            int amount = 0;
+            switch (num)
+            {
+                case 0:
+                    amount = int.Parse(db.DBConnection("SELECT amountDone FROM Assignment WHERE assignmentID = 1")[0]);
+                    return amount;
+                case 1:
+					amount = int.Parse(admindb.DBConnection("SELECT amountDone FROM Assignment WHERE assignmentID = 2")[0]);
+                    return amount;
+                case 2:
+					amount = int.Parse(empdb.DBConnection("SELECT amountDone FROM Assignment WHERE assignmentID = 3")[0]);
+                    return amount;
+                default:
+                    return amount;
+            }
+        }
 
+        public List<string> GetDate()
+        {
+            return db.DBConnection("SELECT available FROM Assignment");
+        }
     }
 }

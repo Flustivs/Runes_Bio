@@ -103,7 +103,7 @@ function Won() {
     counter[0].style.opacity = '0';
     counter[0].style.visibility = 'hidden';
     setTimeout(function () {
-        window.location.href = '/ToDo';
+        window.location.href = '/ToDo?won=won&task=Catch-PopCorn';
     }, 2000)
 }
 function Lost() {
@@ -116,6 +116,6 @@ function Lost() {
     CounterBox[0].style.visibility = 'hidden';
     lost.innerHTML = 'Du tabte med en score på ' + Counter.innerHTML;
     setTimeout(function () {
-        window.location.href = '/PopCorn';
+        window.location.href = '/ToDo?won=lost%task=Catch-PopCorn';
     }, 2000)
 }
