@@ -12,10 +12,21 @@
     <form method="post">
         <div class="latestMovieBox">
             <p class="center_Small_Text">Alle Film</p>
-                @foreach (string movie in Model.item())
-                {
-                    <button asp-page-handler="MoviePick" name="movieName" value="@movie" class="textButton">@movie</button>
-                }
+            <div style="max-height: 540px; overflow-y: scroll;">
+                <table>
+                    @foreach (List<string> movies in Model.item())
+                    {
+                        <div class="row">
+                            @foreach (string movie in movies)
+                            {
+                                <div class="column">
+                                    <button asp-page-handler="MoviePick" name="movieName" value="@movie" class="textButton">@movie</button>
+                                </div>
+                            }
+                        </div>
+                    }
+                </table>
+            </div>
         </div>
     </form>
 </body>

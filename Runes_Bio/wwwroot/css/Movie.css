@@ -23,3 +23,16 @@
     cursor: pointer;
     display: inline-block;
 }
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -4px;
+    width: 1000px;
+}
+
+.column {
+    flex: 1;
+    margin: 0 5px;
+    text-align: center;
+}

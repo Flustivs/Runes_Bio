@@ -16,6 +16,7 @@
             case 1:
                 box.classList.add('flyin');
                 div.innerHTML = 'Skriv den ønskede pris udfra den billet';
+                div.style.textAlign = 'center';
 
                 var inputfield1 = document.createElement('input');
                 inputfield1.type = 'number';
@@ -111,6 +112,7 @@
                 box.classList.add('flyin');
 
                 div.innerHTML = 'Tryk på de personer der skal fjernes helt fra biografen';
+                div.style.textAlign = 'center';
 
                 var employeeList = document.createElement('div');
                 employeeList.classList.add('movieList');
